@@ -14,13 +14,13 @@
       <v-list>
         <v-list-item v-if="miniVariant" class="px-2">
           <v-list-item-avatar color="whitish">
-            <v-img :src="miniUrl" />
+            <v-img :src="miniUrl" class="vuetify-logo" />
           </v-list-item-avatar>
         </v-list-item>
 
         <v-list-item v-else link>
           <v-list-item-avatar color="whitish">
-            <v-img :src="miniUrl" />
+            <v-img :src="miniUrl" class="vuetify-logo" />
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="text-h6">

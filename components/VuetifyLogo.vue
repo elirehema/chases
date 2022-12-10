@@ -7,7 +7,7 @@
 </template>
 
 <style>
-.vuetify-logo {
+.vuetify-logoo {
   height: 180px;
   width: 180px;
   transform: rotateY(560deg);

@@ -143,4 +143,24 @@ header {
 
 .apexcharts-toolbar {
   z-index: 0 !important;
+}
+
+.vuetify-logo {
+  height: 180px;
+  width: 180px;
+  transform: rotateY(560deg);
+  -webkit-animation: turn 3.5s ease-out forwards 1s;
+          animation: turn 3.5s ease-out forwards 1s;
+}
+
+@-webkit-keyframes turn {
+  100% {
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes turn {
+  100% {
+    transform: rotateY(0deg);
+  }
 }/*# sourceMappingURL=styles.css.map */
