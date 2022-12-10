@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "Oxygen";
+  src: local("Oxygen"), url(../fonts/oxygen/Oxygen-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "FiraSans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Fira Sans"), url(../fonts/fira/FiraSans-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "ProductSans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Product Sans"), url(../fonts/productsans/ProductSans-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "MontSerrat";
+  font-style: normal;
+  font-weight: 400;
+  src: local("MontSerrat"), url(../fonts/motserrat/Montserrat-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto"), url(../fonts/roboto/Roboto-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "SofiaPro";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Sofia Pro"), url(../fonts/sofia/Sofia-Pro-Medium.otf) format("truetype");
+}
+@font-face {
+  font-family: "Mulish";
+  font-style: normal;
+  src: url(../fonts/mulish/Mulish-Regular.ttf);
+}
+#__nuxt .app {
+  font-family: "FiraSans", sans-serif;
+}
+
+html,
+body #app {
+  -webkit-font-smoothing: antialiased;
+  background: #E5E5E5 !important;
+  font-style: normal !important;
+  font-family: "Mulish", sans-serif !important;
+  margin: 0;
+  overflow-x: hidden;
+  font-size: 12px !important;
+  color: #2c2b2e;
+  font-weight: 100;
+}
+
+/*******************
+Headings
+*******************/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+span,
+div {
+  -webkit-font-smoothing: antialiased;
+  font-style: normal !important;
+  font-size: 12px !important;
+  font-family: "Mulish", sans-serif !important;
+  font-weight: 100;
+}
+
+p.primary--text.text-h6 {
+  -webkit-font-smoothing: antialiased;
+  font-style: normal !important;
+  font-size: 12px !important;
+  font-family: "Mulish", sans-serif !important;
+  font-weight: 100;
+}
+
+main {
+  background-color: #f4f4f4;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-shadow: inset 0 0 0 1000px rgba(63, 203, 98, 0);
+  zoom: 90%;
+}
+main.v-main.default {
+  zoom: 0%;
+}
+main.v-main.login {
+  background: transparent;
+  background-image: url("https://vicsguide.com/wp-content/uploads/2021/07/Best-loan-apps.jpg");
+  height: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  /* Safari only override */
+  ::i-block-chrome, main {
+    zoom: 80%;
+  }
+}
+.v-application--wrap {
+  background: transparent;
+  height: 70%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.v-application--wrap footer.v-footer {
+  background-color: white !important;
+  opacity: 0.65;
+  -webkit-text-decoration-color: black;
+          text-decoration-color: black;
+}
+
+nav,
+header {
+  zoom: 90%;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+}
+
+.badge {
+  z-index: 10 !important;
+}
+
+.apexcharts-toolbar {
+  z-index: 0 !important;
+}/*# sourceMappingURL=styles.css.map */
