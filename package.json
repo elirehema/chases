@@ -2,10 +2,11 @@
   "name": "dashboard",
   "version": "1.0.0",
   "private": true,
-
   "proxy": {
-    "*":{ "target" : "https://155.12.30.14"}
- },
+    "*": {
+      "target": "https://155.12.30.14"
+    }
+  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

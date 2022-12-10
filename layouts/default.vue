@@ -13,13 +13,13 @@
     >
       <v-list>
         <v-list-item v-if="miniVariant" class="px-2">
-          <v-list-item-avatar color="primary lighten-3">
+          <v-list-item-avatar color="whitish">
             <v-img :src="miniUrl" />
           </v-list-item-avatar>
         </v-list-item>
 
         <v-list-item v-else link>
-          <v-list-item-avatar color="primary lighten-3">
+          <v-list-item-avatar color="whitish">
             <v-img :src="miniUrl" />
           </v-list-item-avatar>
           <v-list-item-content>
@@ -112,16 +112,7 @@
         <v-icon>mdi-home</v-icon>
       </v-btn>
       <v-spacer />
-      <v-badge
-        :content="adv"
-        :value="adv"
-        color="secondary"
-        overlap
-      >
-        <v-icon dark>
-          mdi-bullhorn-variant
-        </v-icon>
-      </v-badge>
+
       <v-badge
         :content="notifications"
         :value="notifications"
@@ -131,17 +122,6 @@
       >
         <v-icon dark>
           mdi-bell
-        </v-icon>
-      </v-badge>
-      <v-badge
-        :content="messages"
-        :value="messages"
-        color="secondary"
-        class="ml-6"
-        overlap
-      >
-        <v-icon dark>
-          mdi-forum
         </v-icon>
       </v-badge>
     </v-app-bar>
