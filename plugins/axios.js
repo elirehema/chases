@@ -15,9 +15,9 @@ export default function ({ $axios, redirect, store }, inject) {
   api.onRequest((config) => {
     config.withCredentials = false
     const token = localStorage.getItem('accessToken')
-    api.setHeader('Content-Type', 'application/x-www-form-urlencoded')
-    api.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With')
-    api.setHeader('Access-Control-Allow-Origin', '*')
+    api.setHeader('Content-Type', 'application/json')
+    //api.setHeader('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With')
+   // api.setHeader('Access-Control-Allow-Origin', '*')
     api.setHeader('Accept', '*/*')
     if (config.url != '/users/signin') {
       // api.setHeader('Authorization', token)

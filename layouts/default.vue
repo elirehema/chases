@@ -320,6 +320,9 @@ export default {
       url: 'logo.png',
       miniUrl: 'logo.png'
     }
+  },
+  created () {
+    localStorage.setItem('msisdn', '255754710521')
   }
 }
 </script>

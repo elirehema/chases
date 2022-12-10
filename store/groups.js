@@ -22,7 +22,7 @@ const actions = {
   async _fetchgroups ({ commit }, requestbody) {
     commit('GET_GROUPS')
     await this.$api
-      .$post('', requestbody)
+      .$post('/groups', requestbody)
       .then((response) => {
         commit('GET_GROUPS_SUCCESS', response)
       })
@@ -34,7 +34,7 @@ const actions = {
 
 const getters = {
   groups: (state) => {
-    return state.groups
+    return state.groups.groups
   }
 }
 

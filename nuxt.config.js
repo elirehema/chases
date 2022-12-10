@@ -12,8 +12,8 @@ export default {
     // middleware: ['router']
   },
   env: {
-    baseUrl: 'https://155.12.30.14/proxy-fpg',
-    localUrl: 'https://155.12.30.14/proxy-fpg'
+    baseUrl: 'http://localhost:8080/api/v1',
+    localUrl: 'http://localhost:8080/api/v1'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -42,6 +42,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/vuetify.js',
+    '~/mixins/mixins.js',
     '~/plugins/axios'
   ],
 

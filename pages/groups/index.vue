@@ -2,6 +2,7 @@
   <h1>GROUPS</h1>
 </template>
 <script>
+import { mapGetters } from 'vuex/types/helpers'
 export default {
   data () {
     return {
@@ -9,7 +10,9 @@ export default {
     }
   },
   created () {
-    const body = '<getGroups><msisdn>255754710521</msisdn></getGroups>'
+    const body = {
+      msisdn: this.msisdn
+    }
     this.$store.dispatch('_fetchgroups', body)
   }
 }
