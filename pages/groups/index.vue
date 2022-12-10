@@ -9,7 +9,6 @@ export default {
     }
   },
   created () {
-    console.log("GET GROUPS")
     const body = '<getGroups><msisdn>255754710521</msisdn></getGroups>'
     this.$store.dispatch('_fetchgroups', body)
   }

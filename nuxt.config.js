@@ -1,4 +1,4 @@
-const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/subway/' : '/';
+const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/subway/' : '/'
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -8,8 +8,8 @@ export default {
   router: {
     mode: 'hash',
     base: routerBase,
-    routerNameSplitter: '/',
-   //middleware: ['router']
+    routerNameSplitter: '/'
+    // middleware: ['router']
   },
   env: {
     baseUrl: 'https://155.12.30.14/proxy-fpg',
@@ -76,7 +76,7 @@ export default {
      ** You can extend webpack config here
      */
     publicPath: process.env.NODE_ENV === 'prod' ? '/subway/' : '/subway/',
-    extend(config, ctx) { },
+    extend (config, ctx) { },
     postcss: {
       preset: {
         features: {
