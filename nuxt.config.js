@@ -1,16 +1,25 @@
-import colors from 'vuetify/es5/util/colors'
-
+const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/' : '/';
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
+  router: {
+    mode: 'hash',
+    base: routerBase,
+    routerNameSplitter: '/',
+   //middleware: ['router']
+  },
+  env: {
+    baseUrl: 'https://155.12.30.14/proxy-fpg',
+    localUrl: 'https://155.12.30.14/proxy-fpg'
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - dashboard',
-    title: 'dashboard',
+    title: 'NgaziTech',
     htmlAttrs: {
       lang: 'en'
     },
@@ -32,7 +41,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vuetify.js'
+    '~/plugins/vuetify.js',
+    '~/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -43,7 +53,9 @@ export default {
     // https://go.nuxtjs.dev/typescript
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    '@nuxtjs/style-resources',
+    '@nuxt/postcss8'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -60,6 +72,21 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    /*
+     ** You can extend webpack config here
+     */
+    publicPath: process.env.NODE_ENV === 'production' ? '/assets/' : '',
+    extend(config, ctx) { },
+    postcss: {
+      preset: {
+        features: {
+          customProperties: false
+        }
+      }
+    },
+    terser: {
+      extractComments: false // default was LICENSES
+    }
   },
   server: {
     port: 8000,
