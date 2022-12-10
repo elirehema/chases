@@ -12,25 +12,43 @@
       style="max-height: 97.6%;"
     >
       <v-list>
-        <v-list-item class="px-2">
-          <v-list-item-avatar v-if="miniVariant" color="primary lighten-2">
+        <v-list-item v-if="miniVariant" class="px-2">
+          <v-list-item-avatar color="primary lighten-3">
             <v-img :src="miniUrl" />
           </v-list-item-avatar>
-          <v-img v-else :src="url" />
         </v-list-item>
 
-        <v-list-item v-if="!miniVariant" link>
+        <v-list-item v-else link>
+          <v-list-item-avatar color="primary lighten-3">
+            <v-img :src="miniUrl" />
+          </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="text-h6">
-              Nexis IOS
+              NgaziTech Platform
             </v-list-item-title>
-            <v-list-item-subtitle>Smart metering system</v-list-item-subtitle>
+            <v-list-item-subtitle>Transactions management</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
 
       <v-divider />
-      <v-list dense>
+      <v-list-item
+        v-for="child in menus"
+        :key="child.title"
+        :to="child.to"
+        color="success"
+        class="pl-4"
+      >
+        <v-list-item-icon>
+          <v-icon>{{ 'mdi-'+ child.icon }}</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>
+            <span class="font-weight-light">{{ child.title }}</span>
+          </v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
+      <!--<v-list dense>
         <v-list-group
           v-for="item in menuitems"
           :key="item.title"
@@ -64,7 +82,7 @@
             </v-list-item-content>
           </v-list-item>
         </v-list-group>
-      </v-list>
+      </v-list>-->
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -267,12 +285,60 @@ export default {
           menus: []
         }
       ],
+      menus: [
+        {
+          title: 'Home',
+          icon: 'view-dashboard',
+          to: '/'
+        },
+        {
+          title: 'Groups',
+          icon: 'account-group',
+          to: '/groups'
+        },
+        {
+          title: 'POC',
+          icon: 'map-marker-path'
+        },
+        {
+          title: 'DCU',
+          icon: 'access-point'
+        },
+        {
+          title: 'QES',
+          icon: 'dots-circle'
+        },
+        {
+          title: 'Line Loss Rule',
+          icon: 'source-branch'
+        },
+        {
+          title: 'VEE Work Group',
+          icon: 'widgets'
+        },
+        {
+          title: 'Install Survey',
+          icon: 'magnify'
+        },
+        {
+          title: 'Install Plan',
+          icon: 'crosshairs'
+        },
+        {
+          title: 'Install Order',
+          icon: 'stack-overflow'
+        },
+        {
+          title: 'Help Desk',
+          icon: 'information'
+        }
+      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js',
-      url: 'https://www.taxconsulting.co.za/wp-content/uploads/2021/10/Lexis-Nexis.png',
-      miniUrl: 'https://member.psssf.go.tz/images/logo-bird.png'
+      url: 'logo.png',
+      miniUrl: 'logo.png'
     }
   }
 }
