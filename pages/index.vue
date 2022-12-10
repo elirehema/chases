@@ -1,12 +1,12 @@
 <template>
   <v-row justify="start">
     <v-col cols="12" sm="12" md="3">
-      <v-card min-height="400" flat outlined class="logo py-4 d-flex justify-center">
+      <v-card min-height="400" flat outlined class="logo py-4 d-flex justify-center align-center">
         <NuxtLogo />
       </v-card>
     </v-col>
     <v-col cols="12" sm="12" md="6">
-      <v-card min-height="400" flat outlined>
+      <v-card min-height="400" flat outlined class=" py-4 d-flex justify-center align-center">
         <v-sparkline
           :value="value"
           :gradient="gradient"
