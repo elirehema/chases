@@ -34,7 +34,7 @@ const actions = {
 
 const getters = {
   groups: (state) => {
-    return state.groups.groups
+    return state.groups
   }
 }
 

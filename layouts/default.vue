@@ -277,8 +277,9 @@ export default {
           to: '/groups'
         },
         {
-          title: 'POC',
-          icon: 'map-marker-path'
+          title: 'Banks',
+          icon: 'bank',
+          to: '/banks'
         },
         {
           title: 'DCU',

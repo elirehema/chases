@@ -1,15 +1,16 @@
 <template>
+  <skeleton-table-loader v-if="banks == null" />
   <v-data-table
-    v-if="groups"
+    v-else
     :headers="headers"
-    :items="groups.groups"
+    :items="banks.banks"
     item-key="name"
     class="elevation-1"
   >
     <template #top>
       <v-toolbar flat color="teal" prominent dense>
         <v-toolbar-title class="text-h4 white--text">
-          Groups
+          Banks
         </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
@@ -20,7 +21,6 @@
       </td>
     </template>
   </v-data-table>
-  <skeleton-table-loader v-else />
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -29,25 +29,24 @@ export default {
     return {
       headers: [
         {
-          text: 'Group ID',
+          text: 'FSP ID',
           align: 'start',
           sortable: false,
-          value: 'groupId'
+          value: 'fsp'
         },
-        { text: 'Group Name', value: 'groupName' }
+        { text: 'Bank Name', value: 'name' }
       ]
     }
   },
   computed: {
-    ...mapGetters({
-      groups: 'groups'
-    })
+    ...mapGetters({ banks: 'banks' })
   },
   created () {
     const body = {
-      msisdn: this.msisdn
+      msisdn: this.msisdn,
+      groupId: parseInt(this.msisdn)
     }
-    this.$store.dispatch('_fetchgroups', body)
+    this.$store.dispatch('_fetchbanks', body)
   }
 
 }

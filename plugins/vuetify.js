@@ -24,7 +24,7 @@ export default (ctx) => {
 
         },
         light: {
-          primary: '#5c5c5c',
+          primary: '#4c4c4c',
           accent: '#000000',
           secondary: '#f49123',
           success: '#f49123',
@@ -33,7 +33,7 @@ export default (ctx) => {
           error: '#FF0000',
           default: "#FFFFFF",
           milky: "#FDFFF5",
-          teal: "#00897B",
+          teal: "#51883a",
           whitish: "F5F5F5",
           deposit: "#14c416",
           button: "#02532b"
