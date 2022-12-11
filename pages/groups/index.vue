@@ -7,8 +7,8 @@
     class="elevation-1"
   >
     <template #top>
-      <v-toolbar flat color="teal" prominent dense>
-        <v-toolbar-title class="text-h4 white--text">
+      <v-toolbar flat color="teal" dense>
+        <v-toolbar-title class="text-h5 white--text">
           Groups
         </v-toolbar-title>
         <v-spacer />
