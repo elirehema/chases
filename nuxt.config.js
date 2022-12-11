@@ -30,7 +30,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: process.env.DEPLOY_ENV === 'prod' ? '/subway/favicon.ico' : '/favicon.ico' }
     ]
   },
 
@@ -43,6 +43,7 @@ export default {
   plugins: [
     '~/plugins/vuetify.js',
     '~/mixins/mixins.js',
+    '~/plugins/vuepersistence.js',
     '~/plugins/axios'
   ],
 
