@@ -12,8 +12,8 @@ export default {
     // middleware: ['router']
   },
   env: {
-    baseUrl: 'http://localhost:8080/api/v1',
-    localUrl: 'http://localhost:8080/api/v1'
+    baseUrl: 'http://10.12.83.129:8080/api/v1',
+    localUrl: 'http://10.12.83.129:8080/api/v1'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
