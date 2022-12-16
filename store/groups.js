@@ -29,6 +29,15 @@ const actions = {
       .catch(() => {
         commit('GET_GROUPS_ERROR')
       })
+  },
+
+  async _addgroupservicename ({ commit }, requestbody) {
+    await this.$api
+      .$post('/group/service', requestbody)
+      .then((response) => {
+      })
+      .catch(() => {
+      })
   }
 }
 

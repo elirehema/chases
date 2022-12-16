@@ -1,13 +1,12 @@
 
 <template>
   <v-card v-if="group">
-    <v-toolbar
+    <v-app-bar
       color="primary"
       dark
       shrink-on-scroll
       prominent
       fade-img-on-scroll
-      scroll-target="#scrolling-techniques-5"
       scroll-threshold="500"
     >
       <v-icon class="mt-4 ml-5" x-large>
@@ -33,7 +32,7 @@
             class="mt-4"
             v-on="on"
           >
-            Add service
+            {{ $t('label.button.btnaddservicename') }}
           </v-btn>
         </template>
         <v-card>
@@ -43,7 +42,7 @@
             flat
           >
             <v-toolbar-title class="text-h4">
-              Add group service
+              { &t('label.button.btnaddservicename')}
             </v-toolbar-title>
           </v-toolbar>
           <v-card-text class="pt-3 ">
@@ -110,7 +109,7 @@
           </v-tab>
         </v-tabs>
       </template>
-    </v-toolbar>
+    </v-app-bar>
 
     <v-tabs-items v-model="tab">
       <v-tab-item
@@ -118,14 +117,16 @@
         :key="item"
       >
         <v-card flat>
-          <v-card-text v-text="text" />
+          <v-card-text />
         </v-card>
       </v-tab-item>
     </v-tabs-items>
     <v-tabs-items v-model="tab">
       <v-tab-item>
         <v-list>
-          <v-subheader>SERVICES</v-subheader>
+          <v-subheader class="text-uppercase">
+            {{ $t('label.title.groupservices') }}
+          </v-subheader>
           <v-list-item-group
             color="primary"
           >
@@ -134,7 +135,7 @@
               :key="i"
             >
               <v-list-item-content>
-                <v-list-item-title v-text="item.enServiceName" />
+                <v-list-item-title>{{ item.enServiceName }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
@@ -194,7 +195,7 @@ export default {
       await await this.$api
         .$post('/group/service', payload)
         .then((response) => {
-          //this.$route.push(`/groups/${response.groupId}`)
+          // this.$route.push(`/groups/${response.groupId}`)
 
           this._getGroupServices()
           this.dialog = false
