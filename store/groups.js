@@ -46,6 +46,22 @@ const actions = {
       })
       .catch(() => {
       })
+  },
+  async _addgroupleader ({ comit }, body) {
+    await this.$api
+      .$post('/group/leader', body)
+      .then((response) => {
+      })
+      .catch(() => {
+      })
+  },
+  async _deletegroupleader ({ dispatch }, body) {
+    await this.$api
+      .$post('/group/leader', body)
+      .then((response) => {
+      })
+      .catch(() => {
+      })
   }
 }
 

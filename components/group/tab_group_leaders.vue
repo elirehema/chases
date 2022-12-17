@@ -1,7 +1,7 @@
 <template>
   <v-data-table
     :headers="headers"
-    :items="desserts"
+    :items="leaders"
     sort-by="calories"
     class="elevation-1"
   >
@@ -44,40 +44,46 @@
 
             <v-card-text>
               <v-container>
-                <v-row>
-                  <v-col
-                    cols="12"
-                    sm="12"
-                    md="6"
-                  >
-                    <v-text-field
-                      v-model="editedItem.groupId"
-                      label="Group Name *"
-                    />
-
-                    <v-select
-                      v-model="editedItem.groupId"
-                      :items="groups"
-                      :item-text="'name'"
-                      :item-value="'id'"
-                      label="Select Group *"
-                      name="editedItem.productId"
-                      :rules="[rules.required]"
-                      persistent-hint
-                      single-line
-                    />
-                  </v-col>
-                  <v-col
-                    cols="12"
-                    sm="12"
-                    md="6"
-                  >
-                    <v-text-field
-                      v-model="editedItem.msisdn"
-                      label="Leader Phone number"
-                    />
-                  </v-col>
-                </v-row>
+                <v-form
+                  ref="form"
+                  v-model="valid"
+                  lazy-validation
+                >
+                  <v-row>
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-select
+                        v-model="editedItem.groupId"
+                        :items="groups.groups"
+                        :item-text="'groupName'"
+                        :item-value="'groupId'"
+                        label="Select Group *"
+                        name="editedItem.groupId"
+                        :rules="[rules.required]"
+                        persistent-hint
+                        single-line
+                        required
+                        readonly
+                        chips
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-text-field
+                        v-model="editedItem.msisdn"
+                        label="Leader Phone number"
+                        :rules="[rules.phonenumber]"
+                        required
+                      />
+                    </v-col>
+                  </v-row>
+                </v-form>
               </v-container>
             </v-card-text>
 
@@ -102,18 +108,18 @@
             </v-card-actions>
           </v-card>
         </v-dialog>
-        <v-dialog v-model="dialogDelete" max-width="500px">
+        <v-dialog v-model="dialogDelete" max-width="30%">
           <v-card>
-            <v-card-title class="text-h5">
-              Are you sure you want to delete this item?
+            <v-card-title class="text-h5 white">
+              Are you sure you want to delete this leader {{ editedItem.msisdn }}?
             </v-card-title>
             <v-card-actions>
               <v-spacer />
-              <v-btn color="blue darken-1" text @click="closeDelete">
-                Cancel
+              <v-btn color="green darken-1" small class="px-4 py-2" @click="closeDelete">
+                {{ $t('label.button.btnyessure') }}
               </v-btn>
-              <v-btn color="blue darken-1" text @click="deleteItemConfirm">
-                OK
+              <v-btn color="success darken-1" small class="px-4 py-2" @click="deleteItemConfirm">
+                {{ $t('label.button.btnnotsure') }}
               </v-btn>
               <v-spacer />
             </v-card-actions>
@@ -123,14 +129,14 @@
     </template>
     <template #item.actions="{ item }">
       <v-icon
-        small
+        medium
         class="mr-2"
         @click="editItem(item)"
       >
         mdi-pencil
       </v-icon>
       <v-icon
-        small
+        medium
         @click="deleteItem(item)"
       >
         mdi-delete
@@ -164,9 +170,14 @@ export default {
       { text: 'Actions', value: 'actions', sortable: false, align: 'right' }
     ],
     rules: {
-      required: v => !!v || 'Name is required'
+      required: v => !!v || 'Field is required',
+      phonenumber: [
+        v => !!v || 'filed is required',
+        v => (v && v.length >= 11) || 'Name must be not less than 10 characters'
+      ]
     },
-    desserts: [],
+    valid: true,
+    leaders: [],
     editedIndex: -1,
     editedItem: {
       msisdn: '',
@@ -199,6 +210,7 @@ export default {
   },
 
   created () {
+    this.editedItem.groupId = parseInt(this.$route.params.id)
     this.initialize()
   },
 
@@ -210,24 +222,24 @@ export default {
         role: 'Admin'
       }
       for (let i = 0; i < 20; i++) {
-        this.desserts.push(leader)
+        this.leaders.push(leader)
       }
     },
 
     editItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.leaders.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
 
     deleteItem (item) {
-      this.editedIndex = this.desserts.indexOf(item)
+      this.editedIndex = this.leaders.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.desserts.splice(this.editedIndex, 1)
+      this.leaders.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -248,12 +260,14 @@ export default {
     },
 
     save () {
-      if (this.editedIndex > -1) {
-        Object.assign(this.desserts[this.editedIndex], this.editedItem)
-      } else {
-        this.desserts.push(this.editedItem)
+      if (this.$refs.form.validate()) {
+        if (this.editedIndex > -1) {
+          Object.assign(this.leaders[this.editedIndex], this.editedItem)
+        } else {
+          this.$store.dispatch('_addgroupleader', this.editedItem)
+        }
+        this.close()
       }
-      this.close()
     }
   }
 }
