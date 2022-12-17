@@ -38,6 +38,14 @@ const actions = {
       })
       .catch(() => {
       })
+  },
+  async _addbankaccount ({ comit }, body) {
+    await this.$api
+      .$post('/group/account', body)
+      .then((response) => {
+      })
+      .catch(() => {
+      })
   }
 }
 
