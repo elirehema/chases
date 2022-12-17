@@ -42,7 +42,7 @@
             flat
           >
             <v-toolbar-title class="text-h4">
-              { &t('label.button.btnaddservicename')}
+              {{ formtitle }}
             </v-toolbar-title>
           </v-toolbar>
           <v-card-text class="pt-3 ">
@@ -74,7 +74,7 @@
             <v-btn
               small
               color="green darken-1"
-              @click="dialog = false"
+              @click="discard"
             >
               Discard
             </v-btn>
@@ -133,6 +133,7 @@
             <v-list-item
               v-for="(item, i) in services"
               :key="i"
+              @click="_editGroupService(item)"
             >
               <v-list-item-content>
                 <v-list-item-title>{{ item.enServiceName }}</v-list-item-title>
@@ -154,8 +155,15 @@ export default {
       services: null,
       dialog: false,
       tab: null,
+      editedIndex: -1,
       editedItem: {},
-      items: ['Group Services']
+      defaultItem: {},
+      items: ['Group Services', 'Bank Account']
+    }
+  },
+  computed: {
+    formtitle () {
+      return this.editedIndex === -1 ? 'Add new service name' : 'Edit Service Name'
     }
   },
   mounted () {
@@ -185,6 +193,16 @@ export default {
         .catch(() => {
         })
     },
+    _editGroupService (item) {
+      this.editedIndex = this.services.indexOf(item)
+      this.editedItem = Object.assign({}, item)
+      this.dialog = true
+    },
+    discard () {
+      this.dialog = false
+      this.editedIndex = -1
+      this.editedItem = this.defaultItem
+    },
     async _addGroupServiceName () {
       const payload = {
         groupId: parseInt(this.$route.params.id),
@@ -192,16 +210,34 @@ export default {
         swServiceName: this.editedItem.swServiceName,
         enServiceName: this.editedItem.enServiceName
       }
-      await await this.$api
-        .$post('/group/service', payload)
-        .then((response) => {
+      if (this.editedIndex >= 0) {
+        payload.serviceId = this.editedItem.serviceId
+        await await this.$api
+          .$put('/group/service', payload)
+          .then((response) => {
           // this.$route.push(`/groups/${response.groupId}`)
 
-          this._getGroupServices()
-          this.dialog = false
-        })
-        .catch(() => {
-        })
+            this._getGroupServices()
+            this.dialog = false
+            this.editedIndex = -1
+            this.editedItem = this.defaultItem
+          })
+          .catch(() => {
+          })
+      } else {
+        await await this.$api
+          .$post('/group/service', payload)
+          .then((response) => {
+          // this.$route.push(`/groups/${response.groupId}`)
+
+            this._getGroupServices()
+            this.dialog = false
+            this.editedIndex = -1
+            this.editedItem = this.defaultItem
+          })
+          .catch(() => {
+          })
+      }
     }
   }
 }
