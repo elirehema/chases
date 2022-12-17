@@ -20,6 +20,7 @@
       <v-spacer />
 
       <v-dialog
+        v-if="tab === 0"
         v-model="dialog"
         persistent
         max-width="600px"
@@ -32,6 +33,9 @@
             class="mt-4"
             v-on="on"
           >
+            <v-icon left>
+              mdi-plus
+            </v-icon>
             {{ $t('label.button.btnaddservicename') }}
           </v-btn>
         </template>
@@ -74,7 +78,7 @@
             <v-btn
               small
               color="green darken-1"
-              @click="discard"
+              @click="_discard()"
             >
               Discard
             </v-btn>
@@ -88,6 +92,28 @@
             </v-btn>
           </v-card-actions>
         </v-card>
+      </v-dialog>
+      <v-dialog
+        v-if="tab === 1"
+        v-model="bankdialog"
+        persistent
+        max-width="600px"
+      >
+        <template #activator="{ on, attrs }">
+          <v-btn
+            color="secondary"
+            dark
+            v-bind="attrs"
+            class="mt-4"
+            v-on="on"
+          >
+            <v-icon left>
+              mdi-plus
+            </v-icon>
+            {{ $t('label.button.btnaddbankaccount') }}
+          </v-btn>
+        </template>
+        <add-bank-account @close="_closebakdialog($event)" />
       </v-dialog>
 
       <v-btn icon>
@@ -142,23 +168,34 @@
           </v-list-item-group>
         </v-list>
       </v-tab-item>
+      <v-tab-item />
+      <v-tab-item>
+        <tab-group-leaders />
+      </v-tab-item>
     </v-tabs-items>
   </v-card>
 
   <skeleton-table-loader v-else />
 </template>
 <script>
+import DialogAddBankaccount from '@/components/dialogs/dialog_add_bankaccount.vue'
+import TabGroupLeaders from '~/components/group/tab_group_leaders.vue'
 export default {
+  components: {
+    'add-bank-account': DialogAddBankaccount,
+    'tab-group-leaders': TabGroupLeaders
+  },
   data () {
     return {
       group: null,
       services: null,
       dialog: false,
+      bankdialog: false,
       tab: null,
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
-      items: ['Group Services', 'Bank Account']
+      items: ['Group Services', 'Bank Account','Group Leaders']
     }
   },
   computed: {
@@ -198,10 +235,13 @@ export default {
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
-    discard () {
+    _discard () {
       this.dialog = false
       this.editedIndex = -1
       this.editedItem = this.defaultItem
+    },
+    _closebakdialog () {
+      this.bankdialog = false
     },
     async _addGroupServiceName () {
       const payload = {
