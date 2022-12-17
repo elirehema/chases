@@ -7,7 +7,7 @@ const mixins = {
   },
   data () {
     return {
-
+      delay: 3000
     }
   },
   methods: {},

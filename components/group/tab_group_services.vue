@@ -1,16 +1,18 @@
 <template>
   <v-data-table
+    v-if="services"
     :headers="headers"
-    :items="leaders"
+    :items="services"
     sort-by="calories"
     class="elevation-1"
+    @click:row="viewService"
   >
     <template #top>
       <v-toolbar
         flat
       >
         <v-toolbar-title class="font-weight-bold text-h3">
-          Group Leaders
+          Group services
         </v-toolbar-title>
         <v-spacer />
         <v-dialog
@@ -28,7 +30,7 @@
               <v-icon left>
                 mdi-plus
               </v-icon>
-              {{ $t('label.button.addgroupleader') }}
+              {{ $t('label.button.btnaddservicename') }}
             </v-btn>
           </template>
           <v-card>
@@ -55,19 +57,11 @@
                       sm="12"
                       md="6"
                     >
-                      <v-select
-                        v-model="editedItem.groupId"
-                        :items="groups.groups"
-                        :item-text="'groupName'"
-                        :item-value="'groupId'"
-                        label="Select Group *"
-                        name="editedItem.groupId"
+                      <v-text-field
+                        v-model="editedItem.swServiceName"
+                        label="Jina la Huduma"
                         :rules="[rules.required]"
-                        persistent-hint
-                        single-line
                         required
-                        readonly
-                        chips
                       />
                     </v-col>
                     <v-col
@@ -76,9 +70,9 @@
                       md="6"
                     >
                       <v-text-field
-                        v-model="editedItem.msisdn"
-                        label="Leader Phone number"
-                        :rules="[rules.phonenumber]"
+                        v-model="editedItem.enServiceName"
+                        label="Service Name (en)"
+                        :rules="[rules.required]"
                         required
                       />
                     </v-col>
@@ -127,46 +121,54 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template #item.actions="{ item }">
-      <v-icon
-        medium
-        class="mr-2"
-        @click="editItem(item)"
-      >
-        mdi-pencil
-      </v-icon>
-      <v-icon
-        medium
-        @click="deleteItem(item)"
-      >
-        mdi-delete
-      </v-icon>
+    <template #[`item.actions`]="{ item }">
+      <div class="align-left" @click.stop>
+        <v-icon
+          medium
+          class="mr-2"
+          @click="editItem(item)"
+        >
+          mdi-pencil
+        </v-icon>
+      
+        <v-icon
+          medium
+          @click="deleteItem(item)"
+        >
+          mdi-delete
+        </v-icon>
+      </div>
     </template>
+
     <template #no-data>
-      <v-btn
-        color="primary"
-        @click="initialize"
-      >
-        Reset
-      </v-btn>
+      <p>No Data...</p>
     </template>
   </v-data-table>
+  <skeleton-table-loader v-else />
 </template>
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  props: {
+    services: {
+      type: Array,
+      default: null
+    }
+  },
   data: () => ({
     dialog: false,
     dialogDelete: false,
     headers: [
       {
-        text: 'MSISDN',
+        text: 'ID',
         align: 'start',
         sortable: false,
-        value: 'msisdn'
+        value: 'serviceId'
       },
-      { text: 'Group ID', value: 'groupId' },
-      { text: 'Role', value: 'role' },
+      { text: 'Service Name(sw)', value: 'swServiceName' },
+      { text: 'Service Name(en)', value: 'enServiceName' },
+      { text: 'Bank Name', value: 'bankName' },
+      { text: 'Bank Account', value: 'bankAccount' },
       { text: 'Actions', value: 'actions', sortable: false, align: 'right' }
     ],
     rules: {
@@ -177,17 +179,22 @@ export default {
       ]
     },
     valid: true,
-    leaders: [],
     editedIndex: -1,
     editedItem: {
-      msisdn: '',
-      groupId: 0,
-      role: 0
+      serviceId: 0,
+      swServiceName: '',
+      enServiceName: '',
+      payNumber: 0,
+      bankName: '',
+      bankAccount: 0
     },
     defaultItem: {
-      msisdn: '',
-      groupId: 0,
-      role: 0
+      serviceId: 0,
+      swServiceName: '',
+      enServiceName: '',
+      payNumber: 0,
+      bankName: '',
+      bankAccount: 0
     }
   }),
 
@@ -196,7 +203,7 @@ export default {
       groups: 'groups'
     }),
     formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return this.editedIndex === -1 ? 'Add new service' : 'Edit service'
     }
   },
 
@@ -211,35 +218,23 @@ export default {
 
   created () {
     this.editedItem.groupId = parseInt(this.$route.params.id)
-    this.initialize()
   },
 
   methods: {
-    initialize () {
-      const leader = {
-        msisdn: '255754710521',
-        groupId: 100000001,
-        role: 'Admin'
-      }
-      for (let i = 0; i < 20; i++) {
-        this.leaders.push(leader)
-      }
-    },
-
     editItem (item) {
-      this.editedIndex = this.leaders.indexOf(item)
+      this.editedIndex = this.services.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialog = true
     },
 
     deleteItem (item) {
-      this.editedIndex = this.leaders.indexOf(item)
+      this.editedIndex = this.services.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      this.$store.dispatch('_deletegroupleader', this.editedItem)
+      // this.services.splice(this.editedIndex, 1)
       this.closeDelete()
     },
 
@@ -249,6 +244,9 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       })
+      setTimeout(() => {
+        this.$emit('update')
+      }, this.delay)
     },
 
     closeDelete () {
@@ -258,13 +256,18 @@ export default {
         this.editedIndex = -1
       })
     },
+    viewService (v) {
+      this.$router.push(`/groups/${this.$route.params.id}/${v.serviceId}`)
+    },
 
     save () {
+      this.editedItem.groupId = parseInt(this.$route.params.id)
       if (this.$refs.form.validate()) {
         if (this.editedIndex > -1) {
-          Object.assign(this.leaders[this.editedIndex], this.editedItem)
+          this.$store.dispatch('_editgroupservicename', this.editedItem)
         } else {
-          this.$store.dispatch('_addgroupleader', this.editedItem)
+          delete this.editedItem.serviceId
+          this.$store.dispatch('_addgroupservicename', this.editedItem)
         }
         this.close()
       }

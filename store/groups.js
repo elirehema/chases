@@ -39,6 +39,14 @@ const actions = {
       .catch(() => {
       })
   },
+  async _editgroupservicename ({ commit }, requestbody) {
+    await this.$api
+      .$put('/group/service', requestbody)
+      .then((response) => {
+      })
+      .catch(() => {
+      })
+  },
   async _addbankaccount ({ comit }, body) {
     await this.$api
       .$post('/group/account', body)
@@ -57,7 +65,7 @@ const actions = {
   },
   async _deletegroupleader ({ dispatch }, body) {
     await this.$api
-      .$post('/group/leader', body)
+      .$delete('/group/leader', body)
       .then((response) => {
       })
       .catch(() => {
