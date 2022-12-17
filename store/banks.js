@@ -21,8 +21,8 @@ const mutations = {
 const actions = {
   async _fetchbanks ({ commit }, requestbody) {
     commit('GET_BANKS')
-    await this.$api
-      .$post('/banks', requestbody)
+    await this.$axios
+      .$post('/api/banks', requestbody)
       .then((response) => {
         commit('GET_BANKS_SUCCESS', response)
       })

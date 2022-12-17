@@ -124,8 +124,8 @@ export default {
   },
   methods: {
     async _getgroupById () {
-      await await this.$api
-        .$post('/group', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
+      await await this.$axios
+        .$post('/api/group', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
         .then((response) => {
           this.group = response
         })
@@ -133,8 +133,8 @@ export default {
         })
     },
     async _getGroupServices () {
-      await await this.$api
-        .$post('/group/services', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
+      await await this.$axios
+        .$post('/api/group/services', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
         .then((response) => {
           this.services = response.services === null ? [] : response.services
         })
