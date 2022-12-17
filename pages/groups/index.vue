@@ -4,7 +4,7 @@
     class="d-flex justify-space-between"
     no-gutters
   >
-    <v-col cols="12" :md="show ? '5' :'12'">
+    <v-col cols="12">
       <v-data-table
         :headers="headers"
         :items="groups.groups"
@@ -50,9 +50,6 @@
           </v-btn>
         </template>
       </v-data-table>
-    </v-col>
-    <v-col v-if="show" cols="12" md="6">
-      <NuxtChild :key="$route.params.id" />
     </v-col>
   </v-row>
 
