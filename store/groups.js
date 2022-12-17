@@ -21,8 +21,8 @@ const mutations = {
 const actions = {
   async _fetchgroups ({ commit }, requestbody) {
     commit('GET_GROUPS')
-    await this.$api
-      .$post('/groups', requestbody)
+    await this.$axios
+      .$post('/api/groups', requestbody)
       .then((response) => {
         commit('GET_GROUPS_SUCCESS', response)
       })
@@ -32,40 +32,40 @@ const actions = {
   },
 
   async _addgroupservicename ({ commit }, requestbody) {
-    await this.$api
-      .$post('/group/service', requestbody)
+    await this.$axios
+      .$post('/api/group/service', requestbody)
       .then((response) => {
       })
       .catch(() => {
       })
   },
   async _editgroupservicename ({ commit }, requestbody) {
-    await this.$api
-      .$put('/group/service', requestbody)
+    await this.$axios
+      .$put('/api/group/service', requestbody)
       .then((response) => {
       })
       .catch(() => {
       })
   },
   async _addbankaccount ({ comit }, body) {
-    await this.$api
-      .$post('/group/account', body)
+    await this.$axios
+      .$post('/api/group/account', body)
       .then((response) => {
       })
       .catch(() => {
       })
   },
   async _addgroupleader ({ comit }, body) {
-    await this.$api
-      .$post('/group/leader', body)
+    await this.$axios
+      .$post('/api/group/leader', body)
       .then((response) => {
       })
       .catch(() => {
       })
   },
   async _deletegroupleader ({ dispatch }, body) {
-    await this.$api
-      .$delete('/group/leader', body)
+    await this.$axios
+      .$delete('/api/group/leader', body)
       .then((response) => {
       })
       .catch(() => {

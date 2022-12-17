@@ -272,7 +272,7 @@ export default {
           to: '/'
         },
         {
-          title: 'Groups',
+          title: 'Organizations',
           icon: 'account-group',
           to: '/groups'
         },
@@ -280,8 +280,8 @@ export default {
           title: 'Banks',
           icon: 'bank',
           to: '/banks'
-        },
-        {
+        }
+       /**  {
           title: 'DCU',
           icon: 'access-point'
         },
@@ -313,6 +313,7 @@ export default {
           title: 'Help Desk',
           icon: 'information'
         }
+        **/
       ],
       miniVariant: false,
       right: true,
