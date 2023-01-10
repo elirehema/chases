@@ -88,6 +88,9 @@
       <v-tab-item>
         <tab-group-transactions :transactions="transactions" />
       </v-tab-item>
+      <v-tab-item>
+        <tab-group-service-no :serviceno="serviceno" />
+      </v-tab-item>
     </v-tabs-items>
   </v-card>
 
@@ -95,9 +98,11 @@
 </template>
 <script>
 import TabGroupTransactions from '@/components/group/tab_group_transaction.vue'
+import TabGroupServiceNumber from '@/components/group/tab_group_service_no.vue'
 export default {
   components: {
-    'tab-group-transactions': TabGroupTransactions
+    'tab-group-transactions': TabGroupTransactions,
+    'tab-group-service-no': TabGroupServiceNumber
   },
   data () {
     return {
@@ -110,7 +115,8 @@ export default {
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
-      items: ['Group Transactions']
+      serviceno: null,
+      items: ['Organzation Transactions', 'Payment Number']
     }
   },
   computed: {
@@ -125,6 +131,7 @@ export default {
   created () {
     this._getgroupServiceById()
     this._getGroupTransactions()
+    this._getServicePaymentNumber()
   },
   methods: {
     async _getgroupServiceById () {
@@ -147,7 +154,17 @@ export default {
           endDate: '2022-12-10 02:12:00'
         })
         .then((response) => {
-          this.transactions = response.transactions
+          this.transactions = response.transactions === null ? [] : response.transactions
+        })
+        .catch(() => {
+        })
+    },
+    async _getServicePaymentNumber () {
+      await await this.$axios
+        .$post('/api/group/service/no', { groupId: parseInt(this.$route.params.id), serviceId: parseInt(this.$route.params.sid), msisdn: parseInt(this.msisdn) })
+        .then((response) => {
+          this.group = response
+          this.serviceno = response
         })
         .catch(() => {
         })

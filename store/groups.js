@@ -70,6 +70,13 @@ const actions = {
       })
       .catch(() => {
       })
+  },
+  async _updatepaymentreference ({ dispatch }, body) {
+    await await this.$axios
+      .$put('/api/group/ref', body)
+      .then((response) => {})
+      .catch(() => {
+      })
   }
 }
 

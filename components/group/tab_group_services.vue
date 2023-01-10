@@ -12,7 +12,7 @@
         flat
       >
         <v-toolbar-title class="font-weight-bold text-h3">
-          Group services
+          Organization services
         </v-toolbar-title>
         <v-spacer />
         <v-dialog

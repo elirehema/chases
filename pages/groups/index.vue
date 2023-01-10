@@ -1,6 +1,6 @@
 <template>
   <v-row
-    v-if="groups"
+    v-if="groups.groups"
     class="d-flex justify-space-between"
     no-gutters
   >
@@ -22,7 +22,9 @@
             color="primary"
             flat
           >
-            <v-toolbar-title class="text-h4 font-weight-bold white--text">Groups</v-toolbar-title>
+            <v-toolbar-title class="text-h4 font-weight-bold white--text">
+              Organizations
+            </v-toolbar-title>
             <v-spacer />
           </v-toolbar>
         </template>
@@ -61,13 +63,7 @@ export default {
   data () {
     return {
       headers: [
-        {
-          text: 'Group ID',
-          align: 'start',
-          sortable: false,
-          value: 'groupId'
-        },
-        { text: 'Group Name', value: 'groupName' }
+        { text: 'Organization Name', value: 'groupName' }
       ],
       show: false,
       editedItem: {}
