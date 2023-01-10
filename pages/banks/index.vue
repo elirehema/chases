@@ -8,8 +8,8 @@
     class="elevation-1"
   >
     <template #top>
-      <v-toolbar flat color="teal">
-        <v-toolbar-title class="text-h5 white--text">
+      <v-toolbar flat color="primary">
+        <v-toolbar-title class="text-h5 white--text font-weight-bold">
           Banks
         </v-toolbar-title>
         <v-spacer />

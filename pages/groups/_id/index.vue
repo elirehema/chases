@@ -14,7 +14,7 @@
       </v-icon>
 
       <v-toolbar-title class="text-h4 font-weight-bold">
-        {{ group.group.groupName }} 
+        {{ group.group.groupName }}
       </v-toolbar-title>
 
       <v-spacer />
@@ -75,11 +75,13 @@
     </v-tabs-items>
     <v-tabs-items v-model="tab">
       <v-tab-item>
-        <tab-group-services :services="services" v-on:update="_getGroupServices($event)" />
+        <tab-group-services :services="services" @update="_getGroupServices($event)" />
       </v-tab-item>
-      <v-tab-item />
       <v-tab-item>
-        <tab-group-leaders />
+        <tab-payment-reference :reference="paymentref" @update="_getGroupPaymentReference" />
+      </v-tab-item>
+      <v-tab-item>
+        <tab-group-leaders :leaders="leaders" />
       </v-tab-item>
     </v-tabs-items>
   </v-card>
@@ -90,23 +92,27 @@
 import DialogAddBankaccount from '@/components/dialogs/dialog_add_bankaccount.vue'
 import TabGroupLeaders from '@/components/group/tab_group_leaders.vue'
 import TabGroupServices from '@/components/group/tab_group_services.vue'
+import TabBroupPaymentReference from '@/components/group/tab_group_payment_ref.vue'
 export default {
   components: {
     'add-bank-account': DialogAddBankaccount,
     'tab-group-leaders': TabGroupLeaders,
-    'tab-group-services': TabGroupServices
+    'tab-group-services': TabGroupServices,
+    'tab-payment-reference': TabBroupPaymentReference
   },
   data () {
     return {
       group: null,
       services: [],
+      leaders: null,
       dialog: false,
       bankdialog: false,
       tab: null,
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
-      items: ['Group Services', 'Bank Account', 'Group Leaders']
+      paymentref: null,
+      items: ['Services', 'Bank Account', 'Leaders']
     }
   },
   computed: {
@@ -121,6 +127,8 @@ export default {
   created () {
     this._getgroupById()
     this._getGroupServices()
+    this._getGroupLeaders()
+    this._getGroupPaymentReference()
   },
   methods: {
     async _getgroupById () {
@@ -137,6 +145,24 @@ export default {
         .$post('/api/group/services', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
         .then((response) => {
           this.services = response.services === null ? [] : response.services
+        })
+        .catch(() => {
+        })
+    },
+    async _getGroupLeaders () {
+      await await this.$axios
+        .$post('/api/group/leaders', { groupId: parseInt(this.$route.params.id) })
+        .then((response) => {
+          this.leaders = response.leaders === null ? [] : response.leaders
+        })
+        .catch(() => {
+        })
+    },
+    async _getGroupPaymentReference () {
+      await await this.$axios
+        .$post('/api/group/ref', { groupId: parseInt(this.$route.params.id), msisdn: parseInt(this.msisdn), serviceId: 1 })
+        .then((response) => {
+          this.paymentref = response
         })
         .catch(() => {
         })

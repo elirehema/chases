@@ -1,5 +1,6 @@
 <template>
   <v-data-table
+    v-if="leaders"
     :headers="headers"
     :items="leaders"
     sort-by="calories"
@@ -10,7 +11,7 @@
         flat
       >
         <v-toolbar-title class="font-weight-bold text-h3">
-          Group Leaders
+          Organization Leaders
         </v-toolbar-title>
         <v-spacer />
         <v-dialog
@@ -151,10 +152,17 @@
       </v-btn>
     </template>
   </v-data-table>
+  <skeleton-table-loader v-else />
 </template>
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  props: {
+    leaders: {
+      type: Array,
+      default: null
+    }
+  },
   data: () => ({
     dialog: false,
     dialogDelete: false,
@@ -165,8 +173,8 @@ export default {
         sortable: false,
         value: 'msisdn'
       },
-      { text: 'Group ID', value: 'groupId' },
-      { text: 'Role', value: 'role' },
+      { text: 'First Name', value: 'firstName' },
+      { text: 'Last Name', value: 'familyName' },
       { text: 'Actions', value: 'actions', sortable: false, align: 'right' }
     ],
     rules: {
@@ -177,7 +185,7 @@ export default {
       ]
     },
     valid: true,
-    leaders: [],
+
     editedIndex: -1,
     editedItem: {
       msisdn: '',
@@ -196,7 +204,7 @@ export default {
       groups: 'groups'
     }),
     formTitle () {
-      return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      return this.editedIndex === -1 ? 'New  Leader' : 'Edit Leader'
     }
   },
 
@@ -211,24 +219,14 @@ export default {
 
   created () {
     this.editedItem.groupId = parseInt(this.$route.params.id)
-    this.initialize()
   },
 
   methods: {
-    initialize () {
-      const leader = {
-        msisdn: '255754710521',
-        groupId: 100000001,
-        role: 'Admin'
-      }
-      for (let i = 0; i < 20; i++) {
-        this.leaders.push(leader)
-      }
-    },
 
     editItem (item) {
       this.editedIndex = this.leaders.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      this.editedItem.groupId = parseInt(this.$route.params.id)
       this.dialog = true
     },
 

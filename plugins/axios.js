@@ -9,7 +9,6 @@ export default function ({ $axios, store, redirect }) {
     $axios.setHeader('Cache-Control: no-cache, no-store, must-revalidate')
     $axios.setHeader('Pragma: no-cache')
     $axios.setHeader('Expires: 0')
-    $axios.setHeader('Cookie', 'user::username')
   })
 
   $axios.onError((error) => {
