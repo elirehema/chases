@@ -83,6 +83,9 @@
       <v-tab-item>
         <tab-group-leaders :leaders="leaders" />
       </v-tab-item>
+      <v-tab-item>
+      <tab-group-users />
+      </v-tab-item>
     </v-tabs-items>
   </v-card>
 
@@ -93,12 +96,14 @@ import DialogAddBankaccount from '@/components/dialogs/dialog_add_bankaccount.vu
 import TabGroupLeaders from '@/components/group/tab_group_leaders.vue'
 import TabGroupServices from '@/components/group/tab_group_services.vue'
 import TabBroupPaymentReference from '@/components/group/tab_group_payment_ref.vue'
+import TabGroupUsersComponent from '@/components/group/tab_group_users.vue'
 export default {
   components: {
     'add-bank-account': DialogAddBankaccount,
     'tab-group-leaders': TabGroupLeaders,
     'tab-group-services': TabGroupServices,
-    'tab-payment-reference': TabBroupPaymentReference
+    'tab-payment-reference': TabBroupPaymentReference,
+    'tab-group-users': TabGroupUsersComponent
   },
   data () {
     return {
@@ -112,7 +117,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Services', 'Bank Account', 'Leaders']
+      items: ['Services', 'Bank Account', 'Leaders', 'Users']
     }
   },
   computed: {
