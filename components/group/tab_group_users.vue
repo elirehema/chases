@@ -89,6 +89,20 @@
                         required
                       />
                     </v-col>
+
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-text-field
+                        v-model="editedItem.password"
+                        label="Password"
+                        type="password"
+                        :rules="[rules.required]"
+                        required
+                      />
+                    </v-col>
                   </v-row>
                 </v-form>
               </v-container>
@@ -156,6 +170,7 @@
   <skeleton-table-loader v-else />
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data () {
     return {
@@ -164,7 +179,7 @@ export default {
       dialogDelete: false,
       valid: true,
       editedItem: {
-        groupID: 0,
+        groupId: 0,
         userId: '',
         password: '',
         fullName: '',
@@ -172,14 +187,14 @@ export default {
         mobile: ''
       },
       defautlItem: {
-        groupID: 0,
+        groupId: 0,
         userId: '',
         password: '',
         fullName: '',
         email: '',
         mobile: ''
       },
-      users: [
+      uses: [
         {
           mobile: '255754000001',
           fullName: 'Maria Dauds',
@@ -230,12 +245,16 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      'users':'users'
+    }),
     formTitle () {
       return this.editedIndex === -1 ? 'Add new user' : 'Update user information'
     }
   },
   created () {
-    this.editedItem.groupID = parseInt(this.$route.params.id)
+    this.editedItem.groupId = parseInt(this.$route.params.id)
+    this.$store.dispatch('_fetchgroupusers', { groupId: parseInt(this.$route.params.id) })
   },
   methods: {
     editItem (item) {
@@ -264,6 +283,7 @@ export default {
       this.dialog = false
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedItem.groupId = parseInt(this.$route.params.id)
         this.editedIndex = -1
       })
     },
@@ -272,6 +292,7 @@ export default {
       this.dialogDelete = false
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem)
+        this.editedItem.groupId = parseInt(this.$route.params.id)
         this.editedIndex = -1
       })
     },

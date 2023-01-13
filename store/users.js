@@ -14,7 +14,7 @@ const mutations = {
   },
   'GET_USERS_SUCCESS' (state, payload) {
     state.showLoader = false
-    state.users = payload
+    state.users = payload.users
   }
 }
 
@@ -32,9 +32,9 @@ const actions = {
   },
   async _addgroupuser ({ dispatch }, requestbody) {
     await this.$axios
-      .$post('/api/users', requestbody)
+      .$post('/api/user', requestbody)
       .then((response) => {
-        dispatch('_fetchgroupusers', null, { root: true })
+        dispatch('_fetchgroupusers', { groupId: parseInt(requestbody.groupId) }, { root: true })
       })
       .catch(() => {
       })
@@ -43,7 +43,7 @@ const actions = {
     await this.$axios
       .$put('/api/users', requestbody)
       .then((response) => {
-        dispatch('_fetchgroupusers', null, { root: true })
+        dispatch('_fetchgroupusers', { groupId: parseInt(requestbody.groupId) }, { root: true })
       })
       .catch(() => {
       })
@@ -52,7 +52,7 @@ const actions = {
     await this.$axios
       .$post('/api/users', requestbody)
       .then((response) => {
-        dispatch('_fetchgroupusers', null, { root: true })
+        dispatch('_fetchgroupusers', { groupId: parseInt(requestbody.groupId) }, { root: true })
       })
       .catch(() => {
       })
