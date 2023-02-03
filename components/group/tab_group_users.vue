@@ -99,7 +99,6 @@
                         v-model="editedItem.password"
                         label="Password"
                         type="password"
-                        :rules="[rules.required]"
                         required
                       />
                     </v-col>
@@ -184,7 +183,8 @@ export default {
         password: '',
         fullName: '',
         email: '',
-        mobile: ''
+        mobile: '',
+        msisdn: ''
       },
       defautlItem: {
         groupId: 0,
@@ -192,7 +192,8 @@ export default {
         password: '',
         fullName: '',
         email: '',
-        mobile: ''
+        mobile: '',
+        msisdn: ''
       },
       uses: [
         {
@@ -236,7 +237,7 @@ export default {
         },
         { text: 'Full Name', value: 'fullName' },
         { text: 'Email', value: 'email' },
-        { text: 'Group ID', value: 'groupId' },
+        { text: 'Status', value: 'status' },
         { text: 'Actions', value: 'actions', sortable: false, align: 'right' }
       ],
       rules: {
@@ -246,7 +247,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      'users':'users'
+      users: 'users'
     }),
     formTitle () {
       return this.editedIndex === -1 ? 'Add new user' : 'Update user information'
@@ -261,6 +262,7 @@ export default {
       this.editedIndex = this.users.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.editedItem.userId = this.editedItem.email
+      this.editedItem.msisdn = this.editedItem.mobile
       this.editedItem.groupId = parseInt(this.$route.params.id)
       this.dialog = true
     },
@@ -269,6 +271,7 @@ export default {
       this.editedIndex = this.users.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.editedItem.userId = this.editedItem.email
+      this.editedItem.msisdn = this.editedItem.mobile
       this.dialogDelete = true
     },
 
@@ -301,10 +304,12 @@ export default {
       if (this.$refs.form.validate()) {
         if (this.editedIndex > -1) {
           this.editedItem.userId = this.editedItem.email
+          this.editedItem.msisdn = this.editedItem.mobile
           this.$store.dispatch('_editgroupuser', this.editedItem)
         } else {
           delete this.editedItem.userId
           this.editedItem.userId = this.editedItem.email
+          this.editedItem.msisdn = this.editedItem.mobile
           this.$store.dispatch('_addgroupuser', this.editedItem)
         }
         this.close()

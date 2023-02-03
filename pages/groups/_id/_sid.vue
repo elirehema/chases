@@ -9,11 +9,18 @@
       fade-img-on-scroll
       scroll-threshold="500"
     >
-      <v-icon class="mt-4 ml-5" x-large>
+      <v-icon class="mt-4" x-large>
         mdi-account-group
       </v-icon>
-      <v-toolbar-title class="text-h4 font-weight-bold">
-        Group ID:  {{ group.groupId }}
+      <v-toolbar-title>
+        <v-row class="d-flex justify-center align-center ">
+          <v-col cols="12" class="text-h4 font-weight-bold">
+            Service Name:  {{ service.enServiceName }}
+          </v-col>
+          <v-col cols="12" class="text-h5 font-weight-bold">
+            Group ID:  {{ group.groupId }}
+          </v-col>
+        </v-row>
       </v-toolbar-title>
 
       <v-spacer />

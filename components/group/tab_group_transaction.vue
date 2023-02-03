@@ -10,7 +10,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title class="font-weight-bold text-h3">
+        <v-toolbar-title class="font-weight-bold text-h4">
           Organization transactions
         </v-toolbar-title>
         <v-spacer />

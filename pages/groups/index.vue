@@ -1,13 +1,13 @@
 <template>
   <v-row
-    v-if="groups.groups"
+    v-if="groups"
     class="d-flex justify-space-between"
     no-gutters
   >
     <v-col cols="12">
       <v-data-table
         :headers="headers"
-        :items="groups.groups"
+        :items="groups"
         item-key="name"
         class="elevation-1"
         @click:row="rowclick"
@@ -44,12 +44,7 @@
           </v-icon>
         </template>
         <template #no-data>
-          <v-btn
-            color="primary"
-            @click="initialize"
-          >
-            Reset
-          </v-btn>
+          <span>No group found ...</span>
         </template>
       </v-data-table>
     </v-col>

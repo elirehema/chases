@@ -14,7 +14,7 @@ const mutations = {
   },
   'GET_BANKS_SUCCESS' (state, payload) {
     state.showLoader = false
-    state.banks = payload
+    state.banks = payload.banks == null ? [] : payload.banks
   }
 }
 

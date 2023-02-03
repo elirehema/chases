@@ -14,7 +14,7 @@ const mutations = {
   },
   'GET_GROUPS_SUCCESS' (state, payload) {
     state.showLoader = false
-    state.groups = payload
+    state.groups = payload.groups == null ? [] : payload.groups
   }
 }
 

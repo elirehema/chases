@@ -1,9 +1,8 @@
 <template>
-  <skeleton-table-loader v-if="banks == null" />
   <v-data-table
-    v-else
+    v-if="banks"
     :headers="headers"
-    :items="banks.banks"
+    :items="banks"
     item-key="name"
     class="elevation-1"
   >
@@ -21,6 +20,7 @@
       </td>
     </template>
   </v-data-table>
+  <skeleton-table-loader v-else />
 </template>
 <script>
 import { mapGetters } from 'vuex'
@@ -43,8 +43,8 @@ export default {
   },
   created () {
     const body = {
-      msisdn: this.msisdn,
-      groupId: parseInt(this.msisdn)
+      msisdn: this.msisdn
+      //groupId: parseInt(this.msisdn)
     }
     this.$store.dispatch('_fetchbanks', body)
   }

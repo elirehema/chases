@@ -58,7 +58,7 @@
                     >
                       <v-select
                         v-model="editedItem.groupId"
-                        :items="groups.groups"
+                        :items="groups"
                         :item-text="'groupName'"
                         :item-value="'groupId'"
                         label="Select Group *"
