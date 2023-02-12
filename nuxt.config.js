@@ -12,8 +12,8 @@ export default {
     // middleware: ['router']
   },
   env: {
-    baseUrl: 'http://localhost:8080/api/v1',
-    localUrl: 'http://localhost:8080/api/v1'
+    baseUrl: 'http://155.12.30.14:8082/api/v1',
+    localUrl: 'http://155.12.30.14:8082/api/v1'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -73,7 +73,7 @@ export default {
     proxy: true
   },
   proxy: {
-    '/api/': { target: 'http://localhost:8080/api/v1', pathRewrite: { '^/api/': '' } }
+    '/api/': { target: 'http://155.12.30.14:8082/api/v1', pathRewrite: { '^/api/': '' } }
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
