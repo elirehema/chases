@@ -36,6 +36,7 @@ jobs:
       - run: rm -rf package-lock.json 
 #      - run: npm i -g npm@6
       - run: npm i --force
+      - run: npm install webpack-dev-server --save-dev
       - run: npm run production
       # - run: npm test
       - name: Save state
