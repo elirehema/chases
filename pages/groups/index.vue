@@ -44,7 +44,7 @@
           </v-icon>
         </template>
         <template #no-data>
-          <span>No group found ...</span>
+          <span>No organization found ...</span>
         </template>
       </v-data-table>
     </v-col>

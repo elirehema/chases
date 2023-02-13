@@ -18,7 +18,7 @@
             Service Name:  {{ service.enServiceName }}
           </v-col>
           <v-col cols="12" class="text-h5 font-weight-bold">
-            Group ID:  {{ group.groupId }}
+            Organization ID:  {{ group.groupId }}
           </v-col>
         </v-row>
       </v-toolbar-title>

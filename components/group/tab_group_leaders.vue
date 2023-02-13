@@ -10,7 +10,7 @@
       <v-toolbar
         flat
       >
-        <v-toolbar-title class="font-weight-bold text-h3">
+        <v-toolbar-title class="font-weight-bold text-h4">
           Organization Leaders
         </v-toolbar-title>
         <v-spacer />
@@ -61,7 +61,7 @@
                         :items="groups"
                         :item-text="'groupName'"
                         :item-value="'groupId'"
-                        label="Select Group *"
+                        label="Select Organization *"
                         name="editedItem.groupId"
                         :rules="[rules.required]"
                         persistent-hint

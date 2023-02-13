@@ -40,7 +40,7 @@ export default {
         value: 'serviceName'
       },
 
-      { text: 'Group ID', value: 'groupId' },
+      { text: 'Organization ID', value: 'groupId' },
       { text: 'MSISDN', value: 'msisdn' },
       { text: 'Receipt #', value: 'receipt' },
 

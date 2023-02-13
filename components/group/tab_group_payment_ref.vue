@@ -12,7 +12,7 @@
             <span>{{ reference.enPaymentReferenceName }}</span>
           </v-list-item-subtitle>
           <v-list-item-subtitle>
-            <span class="font-weight-bold text-h5">Group ID : &nbsp; </span>
+            <span class="font-weight-bold text-h5">Organzation ID : &nbsp; </span>
             <span>{{ reference.groupId }}</span>
           </v-list-item-subtitle>
         </v-list-item-content>
