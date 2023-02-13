@@ -56,8 +56,8 @@ const actions = {
   async _authenticate ({ commit }, requestbody) {
     commit('AUTHENTICATE')
     commit('UPDATPASSWORD', requestbody.password)
-    await this.$axios
-      .$post('/api/auth', requestbody)
+    await this.$api
+      .$post('/auth', requestbody)
       .then((response) => {
         commit('AUTHENTICATE_SUCCESS', response)
       })
@@ -68,8 +68,8 @@ const actions = {
 
   async _updatepassword ({ commit }, requestbody) {
     commit('UPDATPASSWORD', requestbody.newPassword)
-    await this.$axios
-      .$put('/api/auth', requestbody)
+    await this.$api
+      .$put('/auth', requestbody)
       .then((response) => {
         commit('UPDATPASSWORD_SUCCESS', response)
       })

@@ -142,8 +142,8 @@ export default {
   },
   methods: {
     async _getgroupServiceById () {
-      await await this.$axios
-        .$post('/api/group/getservice', { groupId: parseInt(this.$route.params.id), serviceId: parseInt(this.$route.params.sid), msisdn: this.msisdn })
+      await await this.$api
+        .$post('/group/getservice', { groupId: parseInt(this.$route.params.id), serviceId: parseInt(this.$route.params.sid), msisdn: this.msisdn })
         .then((response) => {
           this.group = response
           this.service = response.services[0]
@@ -152,8 +152,8 @@ export default {
         })
     },
     async _getGroupTransactions () {
-      await await this.$axios
-        .$post('/api/transactions', {
+      await await this.$api
+        .$post('/transactions', {
           groupId: parseInt(this.$route.params.id),
           msisdn: parseInt(this.msisdn),
           serviceName: parseInt(this.$route.params.sid),
@@ -167,8 +167,8 @@ export default {
         })
     },
     async _getServicePaymentNumber () {
-      await await this.$axios
-        .$post('/api/group/service/no', { groupId: parseInt(this.$route.params.id), serviceId: parseInt(this.$route.params.sid), msisdn: parseInt(this.msisdn) })
+      await await this.$api
+        .$post('/group/service/no', { groupId: parseInt(this.$route.params.id), serviceId: parseInt(this.$route.params.sid), msisdn: parseInt(this.msisdn) })
         .then((response) => {
           this.group = response
           this.serviceno = response
