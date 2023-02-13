@@ -123,7 +123,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       serviceno: null,
-      items: ['Organzation Transactions', 'Payment Number']
+      items: ['Service Transactions', 'Payment Number']
     }
   },
   computed: {
