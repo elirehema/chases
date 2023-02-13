@@ -1,7 +1,8 @@
 const state = () => ({
   showLoader: Boolean,
   msisdn: null,
-  account: null
+  account: null,
+  authenticated: false
 
 })
 
@@ -24,6 +25,7 @@ const mutations = {
       if (payload.status === 'INACTIVE') {
         this.$router.push('/password')
       } else {
+        state.authenticated = true
         this.$router.push('/')
       }
     } else {
@@ -35,6 +37,7 @@ const mutations = {
     sessionStorage.clear()
     this.$router.push('/signin')
     state.msisdn = null
+    state.authenticated = false
     // window.location.reload(true)
   },
 
@@ -44,6 +47,7 @@ const mutations = {
   },
   'UPDATPASSWORD_SUCCESS' (state, payload) {
     state.showLoader = false
+    state.authenticated = true
     if (payload.responseCode === 0) {
       this.$router.push('/')
     }
@@ -87,7 +91,7 @@ const getters = {
     return state.msisdn
   },
   isAuthenticated: function (state) {
-    return state.msisdn != null
+    return state.authenticated
   }
 
 }

@@ -10,8 +10,8 @@ export default {
   router: {
     mode: 'hash',
     base: routerBase,
-    routerNameSplitter: '/'
-    // middleware: ['router']
+    routerNameSplitter: '/',
+    middleware: ['router']
   },
   env: {
     baseUrl: 'https://eppg.ngazi.co.tz/paymentGW/portal',
