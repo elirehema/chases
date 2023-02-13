@@ -1,4 +1,6 @@
+import metajs from './plugins/meta'
 const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/subway/' : '/subway/'
+const meta = metajs()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
@@ -24,6 +26,7 @@ export default {
       lang: 'en'
     },
     meta: [
+      ...meta,
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '' },
@@ -67,7 +70,7 @@ export default {
     '@nuxtjs/axios'
   ],
 
-  /** 
+  /**
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
