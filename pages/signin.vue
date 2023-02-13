@@ -4,7 +4,7 @@
       <v-row class="mt-0">
         <v-col cols="12" sm="12" md="2">
           <img
-            src="/logo.png"
+            src="@/assets/images/logo.png"
             alt="homepage"
             width="160"
             class="ml-2 dark-logo"
@@ -33,7 +33,7 @@
             <v-card class="py-12">
               <v-card-title class="d-flex justify-center">
                 <img
-                  src="/logo.png"
+                  src="@/assets/images/logo.png"
                   alt="homepage"
                   width="150px"
                   class="ml-2 dark-logo"
