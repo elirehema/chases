@@ -163,7 +163,7 @@ export default {
           msisdn: parseInt(this.msisdn),
           serviceName: parseInt(this.$route.params.sid),
           startDate: '2000-01-01 02:02:00',
-          endDate: '2022-12-10 02:12:00'
+          endDate: '2023-12-10 02:12:00'
         })
         .then((response) => {
           this.transactions = response.transactions === null ? [] : response.transactions

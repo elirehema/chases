@@ -76,6 +76,59 @@
                         required
                       />
                     </v-col>
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-text-field
+                        v-model="editedItem.swPaymentReferenceName"
+                        label="Payment Reference Name (sw)"
+                        :rules="[rules.required]"
+                        required
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-text-field
+                        v-model="editedItem.enPaymentReferenceName"
+                        label="Payment Reference Name (en)"
+                        :rules="[rules.required]"
+                        required
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="6"
+                    >
+                      <v-select
+                        v-model="editedItem.bankNname"
+                        :items="banks.banks"
+                        :item-text="'name'"
+                        :item-value="'name'"
+                        label="Select Bank"
+                        name="editedItem.productId"
+                        :rules="[rules.required]"
+                        persistent-hint
+                        single-line
+                      />
+                    </v-col>
+                    <v-col
+                      cols="12"
+                      sm="12"
+                      md="6"
+                    >
+                      <v-text-field
+                        v-model="editedItem.bankAccount"
+                        label="Bank Account"
+                        hint="01520123456789"
+                        :rules="[rules.required]"
+                        required
+                      />
+                    </v-col>
                   </v-row>
                 </v-form>
               </v-container>
@@ -130,7 +183,7 @@
         >
           mdi-pencil
         </v-icon>
-      
+
         <v-icon
           medium
           @click="deleteItem(item)"
@@ -200,7 +253,8 @@ export default {
 
   computed: {
     ...mapGetters({
-      groups: 'groups'
+      groups: 'groups',
+      banks: 'banks'
     }),
     formTitle () {
       return this.editedIndex === -1 ? 'Add new service' : 'Edit service'
