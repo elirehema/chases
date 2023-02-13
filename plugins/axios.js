@@ -14,11 +14,13 @@ export default function ({ $axios, redirect, store }, inject) {
   })
 
   api.onRequest((config) => {
+    /** 
     const token = store.getters.accessToken
     api.setHeader('Content-Type', 'application/json')
     if (config.url != '/users/signin') {
       api.setHeader('Authorization', 'Bearer ' + token)
     }
+    **/
   })
 
   api.onError((error) => {
@@ -62,7 +64,7 @@ export default function ({ $axios, redirect, store }, inject) {
   /* api.setBaseURL(  process.env.baseUrl ); */
 
   /** For production */
-  api.setBaseURL(process.env.baseUrl)
+  api.setBaseURL(process.env.DEPLOY_ENV === 'prod' ? process.env.baseUrl : process.env.localUrl)
   // Inject to context as $api
   inject('api', api)
 }

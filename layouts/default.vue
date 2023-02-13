@@ -99,7 +99,7 @@
       >
         <v-icon>mdi-{{ `menu${miniVariant ? '' : '-open'}` }}</v-icon>
       </v-btn>
-      <v-btn
+      <!--<v-btn
         icon
         dark
       >
@@ -108,22 +108,19 @@
       <v-btn
         icon
         dark
+        @click="$store.dispatch('_logoutsession')"
       >
         <v-icon>mdi-home</v-icon>
-      </v-btn>
+      </v-btn>-->
       <v-spacer />
-
-      <v-badge
-        :content="notifications"
-        :value="notifications"
-        color="secondary"
-        class="ml-6"
-        overlap
+      <v-btn
+        fab
+        small
+        color="red"
+        @click="$store.dispatch('_logoutsession')"
       >
-        <v-icon dark>
-          mdi-bell
-        </v-icon>
-      </v-badge>
+        <v-icon>mdi-power</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container class="ma-2" height="100%" fluid>
@@ -171,149 +168,22 @@ export default {
       messages: 8,
       adv: 7,
       notifications: 1,
-      menuitems: [
-        {
-          title: 'System',
-          icon: 'cog-transfer-outline',
-          menus: [
-            {
-              title: 'Users',
-              icon: 'account-cog'
-            },
-            {
-              title: 'Settings',
-              icon: 'cog'
-            }
-          ]
-        },
-        {
-          title: 'Archive',
-          icon: 'bookshelf',
-          menus: [
-            {
-              title: 'Power Grid',
-              icon: 'sitemap-outline'
-            },
-            {
-              title: 'Meter',
-              icon: 'gauge'
-            },
-            {
-              title: 'Customer',
-              icon: 'account-group'
-            },
-            {
-              title: 'POC',
-              icon: 'map-marker-path'
-            },
-            {
-              title: 'DCU',
-              icon: 'access-point'
-            },
-            {
-              title: 'QES',
-              icon: 'dots-circle'
-            },
-            {
-              title: 'Line Loss Rule',
-              icon: 'source-branch'
-            },
-            {
-              title: 'VEE Work Group',
-              icon: 'widgets'
-            },
-            {
-              title: 'Install Survey',
-              icon: 'magnify'
-            },
-            {
-              title: 'Install Plan',
-              icon: 'crosshairs'
-            },
-            {
-              title: 'Install Order',
-              icon: 'stack-overflow'
-            },
-            {
-              title: 'Help Desk',
-              icon: 'information'
-            }
-          ]
-        },
-        {
-          title: 'Prepaid',
-          icon: 'domain',
-          menus: []
-        },
-        {
-          title: 'Service Request',
-          icon: 'cloud-download',
-          menus: []
-        },
-        {
-          title: 'Analytics',
-          icon: 'chart-line'
-        },
-        {
-          title: 'Report',
-          icon: 'file-key',
-          menus: []
-        },
-        {
-          title: 'Workflow',
-          icon: 'arrow-decision',
-          menus: []
-        }
-      ],
       menus: [
         {
           title: 'Home',
-          icon: 'view-dashboard',
+          icon: 'home-outline',
           to: '/'
         },
         {
           title: 'Organizations',
-          icon: 'account-group',
+          icon: 'account-group-outline',
           to: '/groups'
         },
         {
           title: 'Banks',
-          icon: 'bank',
+          icon: 'bank-outline',
           to: '/banks'
         }
-       /**  {
-          title: 'DCU',
-          icon: 'access-point'
-        },
-        {
-          title: 'QES',
-          icon: 'dots-circle'
-        },
-        {
-          title: 'Line Loss Rule',
-          icon: 'source-branch'
-        },
-        {
-          title: 'VEE Work Group',
-          icon: 'widgets'
-        },
-        {
-          title: 'Install Survey',
-          icon: 'magnify'
-        },
-        {
-          title: 'Install Plan',
-          icon: 'crosshairs'
-        },
-        {
-          title: 'Install Order',
-          icon: 'stack-overflow'
-        },
-        {
-          title: 'Help Desk',
-          icon: 'information'
-        }
-        **/
       ],
       miniVariant: false,
       right: true,

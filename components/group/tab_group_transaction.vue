@@ -39,8 +39,6 @@ export default {
         sortable: false,
         value: 'serviceName'
       },
-
-      { text: 'Organization ID', value: 'groupId' },
       { text: 'MSISDN', value: 'msisdn' },
       { text: 'Receipt #', value: 'receipt' },
 

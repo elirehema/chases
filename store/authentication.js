@@ -2,6 +2,7 @@ const state = () => ({
   showLoader: Boolean,
   msisdn: null,
   account: null,
+  password: null,
   authenticated: false
 
 })
@@ -90,8 +91,9 @@ const getters = {
   msisdn: function (state) {
     return state.msisdn
   },
+  password: function (state) { return state.password },
   isAuthenticated: function (state) {
-    return state.authenticated
+    return state.password !== null
   }
 
 }
