@@ -64,7 +64,7 @@ export default function ({ $axios, redirect, store }, inject) {
   /* api.setBaseURL(  process.env.baseUrl ); */
 
   /** For production */
-  var baseURL = (process.env.DEPLOY_ENV === 'prod' ? process.env.baseUrl : process.env.localUrl);
+  var baseURL = (process.env.DEPLOY_ENV === 'dev' ? process.env.localUrl : process.env.baseUrl);
   api.setBaseURL(baseURL)
   // Inject to context as $api
   inject('api', api)
