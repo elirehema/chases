@@ -12,8 +12,8 @@ export default {
     // middleware: ['router']
   },
   env: {
-    baseUrl: 'https://155.12.30.14:8082/api/v1',
-    localUrl: 'https://155.12.30.14:8082/api/v1'
+    baseUrl: 'https://eppg.ngazi.co.tz/paymentGW/portal',
+    localUrl: 'https://eppg.ngazi.co.tz/paymentGW/portal'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
