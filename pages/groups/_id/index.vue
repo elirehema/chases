@@ -137,8 +137,8 @@ export default {
   },
   methods: {
     async _getgroupById () {
-      await await this.$axios
-        .$post('/api/group', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
+      await await this.$api
+        .$post('/group', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
         .then((response) => {
           this.group = response
         })
@@ -146,8 +146,8 @@ export default {
         })
     },
     async _getGroupServices () {
-      await await this.$axios
-        .$post('/api/group/services', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
+      await await this.$api
+        .$post('/group/services', { groupId: parseInt(this.$route.params.id), msisdn: this.msisdn })
         .then((response) => {
           this.services = response.services === null ? [] : response.services
         })
@@ -155,8 +155,8 @@ export default {
         })
     },
     async _getGroupLeaders () {
-      await await this.$axios
-        .$post('/api/group/leaders', { groupId: parseInt(this.$route.params.id) })
+      await await this.$api
+        .$post('/group/leaders', { groupId: parseInt(this.$route.params.id) })
         .then((response) => {
           this.leaders = response.leaders === null ? [] : response.leaders
         })
@@ -164,8 +164,8 @@ export default {
         })
     },
     async _getGroupPaymentReference () {
-      await await this.$axios
-        .$post('/api/group/ref', { groupId: parseInt(this.$route.params.id), msisdn: parseInt(this.msisdn), serviceId: 1 })
+      await await this.$api
+        .$post('/group/ref', { groupId: parseInt(this.$route.params.id), msisdn: parseInt(this.msisdn), serviceId: 1 })
         .then((response) => {
           this.paymentref = response
         })

@@ -21,8 +21,8 @@ const mutations = {
 const actions = {
   async _fetchgroupusers ({ commit }, requestbody) {
     commit('GET_USERS')
-    await this.$axios
-      .$post('/api/users', requestbody)
+    await this.$api
+      .$post('/users', requestbody)
       .then((response) => {
         commit('GET_USERS_SUCCESS', response)
       })
@@ -31,8 +31,8 @@ const actions = {
       })
   },
   async _addgroupuser ({ dispatch }, requestbody) {
-    await this.$axios
-      .$post('/api/user', requestbody)
+    await this.$api
+      .$post('/user', requestbody)
       .then((response) => {
         dispatch('_fetchgroupusers', { groupId: parseInt(requestbody.groupId) }, { root: true })
       })
@@ -40,8 +40,8 @@ const actions = {
       })
   },
   async _editgroupuser ({ dispatch }, requestbody) {
-    await this.$axios
-      .$put('/api/users', requestbody)
+    await this.$api
+      .$put('/users', requestbody)
       .then((response) => {
         dispatch('_fetchgroupusers', { groupId: parseInt(requestbody.groupId) }, { root: true })
       })
@@ -49,8 +49,8 @@ const actions = {
       })
   },
   async _deletegroupuser ({ dispatch }, requestbody) {
-    await this.$axios
-      .$post('/api/users', requestbody)
+    await this.$api
+      .$post('/users', requestbody)
       .then((response) => {
         dispatch('_fetchgroupusers', { groupId: parseInt(requestbody.groupId) }, { root: true })
       })
