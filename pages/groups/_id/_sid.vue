@@ -25,7 +25,7 @@
 
       <v-spacer />
 
-      <v-card light class="mt-5 ml-5">
+      <!--<v-card light class="mt-5 ml-5">
         <v-list dense>
           <v-list-item>
             <v-list-item-content>
@@ -62,7 +62,7 @@
             </v-list-item-action>
           </v-list-item>
         </v-list>
-      </v-card>
+      </v-card>-->
 
       <template #extension>
         <v-tabs
@@ -92,6 +92,9 @@
       </v-tab-item>
     </v-tabs-items>
     <v-tabs-items v-model="tab">
+    <v-tab-item>
+    <tab-service-details :service="service"/>
+    </v-tab-item>
       <v-tab-item>
         <tab-group-transactions :transactions="transactions" />
       </v-tab-item>
@@ -106,10 +109,12 @@
 <script>
 import TabGroupTransactions from '@/components/group/tab_group_transaction.vue'
 import TabGroupServiceNumber from '@/components/group/tab_group_service_no.vue'
+import TabServiceDetails from '@/components/group/tab_service_details.vue'
 export default {
   components: {
     'tab-group-transactions': TabGroupTransactions,
-    'tab-group-service-no': TabGroupServiceNumber
+    'tab-group-service-no': TabGroupServiceNumber,
+    'tab-service-details': TabServiceDetails,
   },
   data () {
     return {
@@ -123,7 +128,7 @@ export default {
       editedItem: {},
       defaultItem: {},
       serviceno: null,
-      items: ['Service Transactions', 'Payment Number']
+      items: ['Details', 'Transactions', 'Payment Number']
     }
   },
   computed: {
