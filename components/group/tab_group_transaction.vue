@@ -11,7 +11,7 @@
         flat
       >
         <v-toolbar-title class="font-weight-bold text-h4">
-          Organization transactions
+          Transactions
         </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
