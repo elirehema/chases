@@ -1,5 +1,6 @@
 import metajs from './plugins/meta'
-const routerBase = process.env.DEPLOY_ENV === 'prod' ? '/subway/' : '/'
+const isDev = process.env.NODE_ENV !== 'production'
+
 const meta = metajs()
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
@@ -9,18 +10,17 @@ export default {
   target: 'static',
   router: {
     mode: 'hash',
-    base: routerBase,
+    base: '/',
     routerNameSplitter: '/',
     middleware: ['router']
   },
   env: {
-    baseUrl: 'https://eppg.ngazi.co.tz/paymentGW/portal',
-    localUrl: 'http://localhost:8082/api/v1'
+    baseUrl: isDev ? 'http://localhost:8082/api/v1' : 'https://eppg.ngazi.co.tz/paymentGW/portal'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - dashboard',
+    titleTemplate: 'NgaziTech: %s',
     title: 'NgaziTech',
     htmlAttrs: {
       lang: 'en'

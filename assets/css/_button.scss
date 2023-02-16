@@ -1,0 +1,9 @@
+button{
+    & span{
+    &.v-btn__content{
+        font-weight: bold;
+        color: white;
+        text-decoration-color: white;
+    }
+    }
+}

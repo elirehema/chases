@@ -64,6 +64,11 @@ export default {
       editedItem: {}
     }
   },
+  head () {
+    return {
+      title: 'Organizations'
+    }
+  },
   computed: {
     ...mapGetters({
       groups: 'groups'

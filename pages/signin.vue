@@ -98,6 +98,11 @@ export default {
       title: 'Market Grid : Login'
     }
   },
+  head () {
+    return {
+      title: 'Login Page'
+    }
+  },
   computed: {
     ...mapGetters(['processing'])
 

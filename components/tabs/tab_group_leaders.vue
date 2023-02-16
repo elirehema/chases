@@ -1,18 +1,17 @@
 <template>
   <v-data-table
-    v-if="services"
+    v-if="leaders"
     :headers="headers"
-    :items="services"
+    :items="leaders"
     sort-by="calories"
     class="elevation-1"
-    @click:row="viewService"
   >
     <template #top>
       <v-toolbar
         flat
       >
         <v-toolbar-title class="font-weight-bold text-h4">
-          Organization services
+          Organization Leaders
         </v-toolbar-title>
         <v-spacer />
         <v-dialog
@@ -30,7 +29,7 @@
               <v-icon left>
                 mdi-plus
               </v-icon>
-              {{ $t('label.button.btnaddservicename') }}
+              {{ $t('label.button.addgroupleader') }}
             </v-btn>
           </template>
           <v-card>
@@ -57,63 +56,19 @@
                       sm="12"
                       md="6"
                     >
-                      <v-text-field
-                        v-model="editedItem.swServiceName"
-                        label="Jina la Huduma"
-                        :rules="[rules.required]"
-                        required
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="12"
-                      md="6"
-                    >
-                      <v-text-field
-                        v-model="editedItem.enServiceName"
-                        label="Service Name (en)"
-                        :rules="[rules.required]"
-                        required
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="12"
-                      md="6"
-                    >
-                      <v-text-field
-                        v-model="editedItem.swPaymentReferenceName"
-                        label="Payment Reference Name (sw)"
-                        :rules="[rules.required]"
-                        required
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="12"
-                      md="6"
-                    >
-                      <v-text-field
-                        v-model="editedItem.enPaymentReferenceName"
-                        label="Payment Reference Name (en)"
-                        :rules="[rules.required]"
-                        required
-                      />
-                    </v-col>
-                    <v-col
-                      cols="12"
-                      sm="6"
-                    >
                       <v-select
-                        v-model="editedItem.bankNname"
-                        :items="banks"
-                        :item-text="'name'"
-                        :item-value="'name'"
-                        label="Select Bank"
-                        name="editedItem.productId"
+                        v-model="editedItem.groupId"
+                        :items="groups"
+                        :item-text="'groupName'"
+                        :item-value="'groupId'"
+                        label="Select Organization *"
+                        name="editedItem.groupId"
                         :rules="[rules.required]"
                         persistent-hint
                         single-line
+                        required
+                        readonly
+                        chips
                       />
                     </v-col>
                     <v-col
@@ -122,10 +77,9 @@
                       md="6"
                     >
                       <v-text-field
-                        v-model="editedItem.bankAccount"
-                        label="Bank Account"
-                        hint="01520123456789"
-                        :rules="[rules.required]"
+                        v-model="editedItem.msisdn"
+                        label="Leader Phone number"
+                        :rules="[rules.phonenumber]"
                         required
                       />
                     </v-col>
@@ -174,27 +128,28 @@
         </v-dialog>
       </v-toolbar>
     </template>
-    <template #[`item.actions`]="{ item }">
-      <div class="align-left" @click.stop>
-        <v-icon
-          medium
-          class="mr-2"
-          @click="editItem(item)"
-        >
-          mdi-pencil
-        </v-icon>
-
-        <v-icon
-          medium
-          @click="deleteItem(item)"
-        >
-          mdi-delete
-        </v-icon>
-      </div>
+    <template #item.actions="{ item }">
+      <v-icon
+        medium
+        class="mr-2"
+        @click="editItem(item)"
+      >
+        mdi-pencil
+      </v-icon>
+      <v-icon
+        medium
+        @click="deleteItem(item)"
+      >
+        mdi-delete
+      </v-icon>
     </template>
-
     <template #no-data>
-      <p>No Data...</p>
+      <v-btn
+        color="primary"
+        @click="initialize"
+      >
+        Reset
+      </v-btn>
     </template>
   </v-data-table>
   <skeleton-table-loader v-else />
@@ -203,7 +158,7 @@
 import { mapGetters } from 'vuex'
 export default {
   props: {
-    services: {
+    leaders: {
       type: Array,
       default: null
     }
@@ -213,16 +168,14 @@ export default {
     dialogDelete: false,
     headers: [
       {
-        text: 'ID',
+        text: 'MSISDN',
         align: 'start',
         sortable: false,
-        value: 'serviceId'
+        value: 'msisdn'
       },
-      { text: 'Service Name(sw)', value: 'swServiceName' },
-      { text: 'Service Name(en)', value: 'enServiceName' },
-      { text: 'Bank Name', value: 'bankName' },
-      { text: 'Bank Account', value: 'bankAccount' },
-      { text: 'Actions', value: 'actions', sortable: false, align: 'right' }
+      { text: 'First Name', value: 'firstName' },
+      { text: 'Last Name', value: 'familyName' }
+      /**{ text: 'Actions', value: 'actions', sortable: false, align: 'right' }**/
     ],
     rules: {
       required: v => !!v || 'Field is required',
@@ -232,32 +185,26 @@ export default {
       ]
     },
     valid: true,
+
     editedIndex: -1,
     editedItem: {
-      serviceId: 0,
-      swServiceName: '',
-      enServiceName: '',
-      payNumber: 0,
-      bankName: '',
-      bankAccount: 0
+      msisdn: '',
+      groupId: 0,
+      role: 0
     },
     defaultItem: {
-      serviceId: 0,
-      swServiceName: '',
-      enServiceName: '',
-      payNumber: 0,
-      bankName: '',
-      bankAccount: 0
+      msisdn: '',
+      groupId: 0,
+      role: 0
     }
   }),
 
   computed: {
     ...mapGetters({
-      groups: 'groups',
-      banks: 'banks'
+      groups: 'groups'
     }),
     formTitle () {
-      return this.editedIndex === -1 ? 'Add new service' : 'Edit service'
+      return this.editedIndex === -1 ? 'New  Leader' : 'Edit Leader'
     }
   },
 
@@ -275,20 +222,22 @@ export default {
   },
 
   methods: {
+
     editItem (item) {
-      this.editedIndex = this.services.indexOf(item)
+      this.editedIndex = this.leaders.indexOf(item)
       this.editedItem = Object.assign({}, item)
+      this.editedItem.groupId = parseInt(this.$route.params.id)
       this.dialog = true
     },
 
     deleteItem (item) {
-      this.editedIndex = this.services.indexOf(item)
+      this.editedIndex = this.leaders.indexOf(item)
       this.editedItem = Object.assign({}, item)
       this.dialogDelete = true
     },
 
     deleteItemConfirm () {
-      // this.services.splice(this.editedIndex, 1)
+      this.$store.dispatch('_deletegroupleader', this.editedItem)
       this.closeDelete()
     },
 
@@ -298,9 +247,6 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       })
-      setTimeout(() => {
-        this.$emit('update')
-      }, this.delay)
     },
 
     closeDelete () {
@@ -310,18 +256,13 @@ export default {
         this.editedIndex = -1
       })
     },
-    viewService (v) {
-      this.$router.push(`/groups/${this.$route.params.id}/${v.serviceId}`)
-    },
 
     save () {
-      this.editedItem.groupId = parseInt(this.$route.params.id)
       if (this.$refs.form.validate()) {
         if (this.editedIndex > -1) {
-          this.$store.dispatch('_editgroupservicename', this.editedItem)
+          Object.assign(this.leaders[this.editedIndex], this.editedItem)
         } else {
-          delete this.editedItem.serviceId
-          this.$store.dispatch('_addgroupservicename', this.editedItem)
+          this.$store.dispatch('_addgroupleader', this.editedItem)
         }
         this.close()
       }

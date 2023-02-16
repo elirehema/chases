@@ -27,7 +27,7 @@ export default {
   },
   head () {
     return {
-      title: 'Home Page'
+      title: 'Login Page'
     }
   }
 }

@@ -49,16 +49,16 @@
       <v-spacer />
       <v-btn
         v-if="!isupdate"
-        color="deep-purple lighten-2"
-        text
+        color="button lighten-2"
+        small
         @click="update"
       >
         Update
       </v-btn>
       <v-btn
         v-else
-        color="deep-purple lighten-2"
-        text
+        color="secondary darken-1"
+        small
         @click="save()"
       >
         Save Updates

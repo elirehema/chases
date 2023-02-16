@@ -106,6 +106,11 @@ export default {
       title: 'Market Grid : Login'
     }
   },
+  head () {
+    return {
+      title: 'Password Change'
+    }
+  },
   computed: {
     ...mapGetters({
       account: 'account'

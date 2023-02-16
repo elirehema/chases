@@ -57,7 +57,7 @@ const actions = {
   },
   async _addgroupleader ({ comit }, body) {
     await this.$api
-      .$post('/group/leader', body)
+      .$post('/group/addleader', body)
       .then((response) => {
       })
       .catch(() => {

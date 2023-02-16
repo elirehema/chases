@@ -55,6 +55,11 @@ export default {
       type: 'trend',
       autoLineWidth: false
     }
+  },
+  head () {
+    return {
+      title: 'Home'
+    }
   }
 }
 </script>

@@ -107,9 +107,9 @@
   <skeleton-table-loader v-else />
 </template>
 <script>
-import TabGroupTransactions from '@/components/group/tab_group_transaction.vue'
-import TabGroupServiceNumber from '@/components/group/tab_group_service_no.vue'
-import TabServiceDetails from '@/components/group/tab_service_details.vue'
+import TabGroupTransactions from '@/components/tabs/tab_group_transaction.vue'
+import TabGroupServiceNumber from '@/components/tabs/tab_group_service_no.vue'
+import TabServiceDetails from '@/components/tabs/tab_service_details.vue'
 export default {
   components: {
     'tab-group-transactions': TabGroupTransactions,
@@ -129,6 +129,11 @@ export default {
       defaultItem: {},
       serviceno: null,
       items: ['Details', 'Transactions', 'Payment Number']
+    }
+  },
+  head () {
+    return {
+      title: 'Organization Service'
     }
   },
   computed: {

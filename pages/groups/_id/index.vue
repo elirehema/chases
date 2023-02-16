@@ -42,10 +42,6 @@
         <add-bank-account @close="_closebakdialog($event)" />
       </v-dialog>
 
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
-
       <template #extension>
         <v-tabs
           v-model="tab"
@@ -93,10 +89,10 @@
 </template>
 <script>
 import DialogAddBankaccount from '@/components/dialogs/dialog_add_bankaccount.vue'
-import TabGroupLeaders from '@/components/group/tab_group_leaders.vue'
-import TabGroupServices from '@/components/group/tab_group_services.vue'
-import TabBroupPaymentReference from '@/components/group/tab_group_payment_ref.vue'
-import TabGroupUsersComponent from '@/components/group/tab_group_users.vue'
+import TabGroupLeaders from '@/components/tabs/tab_group_leaders.vue'
+import TabGroupServices from '@/components/tabs/tab_group_services.vue'
+import TabBroupPaymentReference from '@/components/tabs/tab_group_payment_ref.vue'
+import TabGroupUsersComponent from '@/components/tabs/tab_group_users.vue'
 export default {
   components: {
     'add-bank-account': DialogAddBankaccount,
@@ -118,6 +114,11 @@ export default {
       defaultItem: {},
       paymentref: null,
       items: ['Services', 'Bank Account', 'Leaders', 'Users']
+    }
+  },
+  head () {
+    return {
+      title: 'View Organization'
     }
   },
   computed: {
