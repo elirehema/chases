@@ -10,7 +10,7 @@ export default {
   target: 'static',
   router: {
     mode: 'hash',
-    base: '/',
+    base: '/subway/',
     routerNameSplitter: '/',
     middleware: ['router']
   },
