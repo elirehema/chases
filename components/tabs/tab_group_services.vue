@@ -107,7 +107,7 @@
                       sm="6"
                     >
                       <v-select
-                        v-model="editedItem.bankNname"
+                        v-model="editedItem.bankName"
                         :items="banks"
                         :item-text="'name'"
                         :item-value="'name'"
@@ -319,6 +319,7 @@ export default {
 
     save () {
       this.editedItem.groupId = parseInt(this.$route.params.id)
+      this.editedItem.bankAccount = parseInt(this.editedItem.bankAccount)
       if (this.$refs.form.validate()) {
         if (this.editedIndex > -1) {
           this.$store.dispatch('_editgroupservicename', this.editedItem)

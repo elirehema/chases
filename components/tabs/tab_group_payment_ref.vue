@@ -58,10 +58,15 @@
       <v-btn
         v-else
         color="secondary darken-1"
+        :loading="loading"
+        :disabled="loading"
         small
         @click="save()"
       >
         Save Updates
+        <template #loader>
+          <span>Updating ...</span>
+        </template>
       </v-btn>
     </v-card-actions>
   </v-card>
@@ -78,6 +83,7 @@ export default {
   data () {
     return {
       isupdate: false,
+      loading: false,
       rules: {
         required: v => !!v || 'Field is required'
       },
@@ -99,11 +105,14 @@ export default {
       this.editedItem.enPaymentReferenceName = this.reference.enPaymentReferenceName
     },
     save () {
+      this.loading = true
       this.$store.dispatch('_updatepaymentreference', this.editedItem).then(() => {
-        this.$emit('update')
+        setTimeout(() => {
+          this.$emit('update')
+        }, this.delay)
         this.isupdate = !this.isupdate
+        this.loading = false
       })
-      console.log(this.editedItem)
     }
   }
 }
