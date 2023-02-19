@@ -175,7 +175,6 @@ export default {
       },
       { text: 'First Name', value: 'firstName' },
       { text: 'Last Name', value: 'familyName' }
-      /**{ text: 'Actions', value: 'actions', sortable: false, align: 'right' }**/
     ],
     rules: {
       required: v => !!v || 'Field is required',
@@ -247,6 +246,9 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       })
+      setTimeout(() => {
+        this.$emit('update')
+      }, this.delay)
     },
 
     closeDelete () {

@@ -74,10 +74,10 @@
         <tab-group-services :services="services" @update="_getGroupServices($event)" />
       </v-tab-item>
       <v-tab-item>
-        <tab-payment-reference :reference="paymentref" @update="_getGroupPaymentReference" />
+        <tab-payment-reference :reference="paymentref" @update="_getGroupPaymentReference()" />
       </v-tab-item>
       <v-tab-item>
-        <tab-group-leaders :leaders="leaders" />
+        <tab-group-leaders :leaders="leaders" @update="_getGroupLeaders()" />
       </v-tab-item>
       <v-tab-item>
       <tab-group-users />
