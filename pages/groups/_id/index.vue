@@ -74,6 +74,9 @@
         <tab-group-services :services="services" @update="_getGroupServices($event)" />
       </v-tab-item>
       <v-tab-item>
+        <tab-group-transactions :transactions="transactions" />
+      </v-tab-item>
+      <v-tab-item>
         <tab-payment-reference :reference="paymentref" @update="_getGroupPaymentReference()" />
       </v-tab-item>
       <v-tab-item>
@@ -93,13 +96,15 @@ import TabGroupLeaders from '@/components/tabs/tab_group_leaders.vue'
 import TabGroupServices from '@/components/tabs/tab_group_services.vue'
 import TabBroupPaymentReference from '@/components/tabs/tab_group_payment_ref.vue'
 import TabGroupUsersComponent from '@/components/tabs/tab_group_users.vue'
+import TabGroupTransactions from '@/components/tabs/tab_group_transaction.vue'
 export default {
   components: {
     'add-bank-account': DialogAddBankaccount,
     'tab-group-leaders': TabGroupLeaders,
     'tab-group-services': TabGroupServices,
     'tab-payment-reference': TabBroupPaymentReference,
-    'tab-group-users': TabGroupUsersComponent
+    'tab-group-users': TabGroupUsersComponent,
+    'tab-group-transactions': TabGroupTransactions
   },
   data () {
     return {
@@ -108,12 +113,13 @@ export default {
       leaders: null,
       dialog: false,
       bankdialog: false,
+      transactions: null,
       tab: null,
       editedIndex: -1,
       editedItem: {},
       defaultItem: {},
       paymentref: null,
-      items: ['Services', 'Bank Account', 'Leaders', 'Users']
+      items: ['Services', 'Transactions', 'Bank Account', 'Leaders', 'Users']
     }
   },
   head () {
@@ -134,6 +140,7 @@ export default {
     this._getgroupById()
     this._getGroupServices()
     this._getGroupLeaders()
+    this._getGroupTransactions()
     this._getGroupPaymentReference()
   },
   methods: {
@@ -169,6 +176,18 @@ export default {
         .$post('/group/ref', { groupId: parseInt(this.$route.params.id), msisdn: parseInt(this.msisdn), serviceId: 1 })
         .then((response) => {
           this.paymentref = response
+        })
+        .catch(() => {
+        })
+    },
+    async _getGroupTransactions () {
+      await await this.$api
+        .$post('/transactions', {
+          groupId: parseInt(this.$route.params.id),
+          msisdn: parseInt(this.msisdn)
+        })
+        .then((response) => {
+          this.transactions = response.transactions === null ? [] : response.transactions
         })
         .catch(() => {
         })

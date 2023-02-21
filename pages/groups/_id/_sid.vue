@@ -114,7 +114,7 @@ export default {
   components: {
     'tab-group-transactions': TabGroupTransactions,
     'tab-group-service-no': TabGroupServiceNumber,
-    'tab-service-details': TabServiceDetails,
+    'tab-service-details': TabServiceDetails
   },
   data () {
     return {
@@ -147,7 +147,7 @@ export default {
   },
   created () {
     this._getgroupServiceById()
-    this._getGroupTransactions()
+    this._getServiceTransactions()
     this._getServicePaymentNumber()
   },
   methods: {
@@ -161,14 +161,12 @@ export default {
         .catch(() => {
         })
     },
-    async _getGroupTransactions () {
+    async _getServiceTransactions () {
       await await this.$api
         .$post('/transactions', {
           groupId: parseInt(this.$route.params.id),
           msisdn: parseInt(this.msisdn),
-          serviceName: parseInt(this.$route.params.sid),
-          startDate: '2000-01-01 02:02:00',
-          endDate: '2023-12-10 02:12:00'
+          serviceId: parseInt(this.$route.params.sid)
         })
         .then((response) => {
           this.transactions = response.transactions === null ? [] : response.transactions

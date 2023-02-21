@@ -16,7 +16,21 @@
         <v-spacer />
       </v-toolbar>
     </template>
-
+    <template #item.message="{ item }">
+      <v-tooltip left color="primary" class="pa-3" min-width="50%" max-width="80%">
+        <template #activator="{ on, attrs }">
+          <v-icon
+            color="blue"
+            dark
+            v-bind="attrs"
+            v-on="on"
+          >
+            mdi-message-badge
+          </v-icon>
+        </template>
+        <span class="font-weight-bold">{{ item.sms }}</span>
+      </v-tooltip>
+    </template>
     <template #no-data>
       <p>No data</p>
     </template>
@@ -34,20 +48,25 @@ export default {
   data: () => ({
     headers: [
       {
-        text: 'Service',
+        text: 'Transaction ID',
         align: 'start',
         sortable: false,
-        value: 'serviceName'
+        value: 'transactionId'
       },
+      { text: 'Transaction Type', value: 'transactionType' },
       { text: 'MSISDN', value: 'msisdn' },
       { text: 'Receipt #', value: 'receipt' },
 
-      { text: 'Balance Before', value: 'balanceBefore' },
-      { text: 'Balance After', value: 'balanceAfter' },
-      { text: 'Pay Number', value: 'payNumber' },
-      { text: 'Bank Account', value: 'bankAccount' },
-
-      { text: 'Payment Ref', value: 'paymentReference' }
+      { text: 'Source', value: 'sourceAccount' },
+      { text: 'Service', value: 'serviceName' },
+      { text: 'Amount', value: 'transactionAmount' },
+      { text: 'S.B.B', value: 'balanceBefore' },
+      { text: 'S.B.A', value: 'balanceAfter' },
+      { text: 'D.B.B', value: 'destinationaccountbalancebefore' },
+      { text: 'D.B.A', value: 'destinationaccountbalanceafter' },
+      { text: 'Payment Ref', value: 'paymentReference' },
+      { text: 'Message', value: 'message' },
+      { text: 'Transaction Date', value: 'transactionDate' }
     ]
   })
 }
