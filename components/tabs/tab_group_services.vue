@@ -80,7 +80,6 @@
                       cols="12"
                       sm="12"
                       md="6"
-                      v-if="editedIndex == -1"
                     >
                       <v-text-field
                         v-model="editedItem.swPaymentReferenceName"
@@ -93,7 +92,6 @@
                       cols="12"
                       sm="12"
                       md="6"
-                      v-if="editedIndex == -1"
                     >
                       <v-text-field
                         v-model="editedItem.enPaymentReferenceName"
