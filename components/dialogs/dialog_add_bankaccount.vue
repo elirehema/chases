@@ -22,7 +22,7 @@
           >
             <v-select
               v-model="editedItem.bankNname"
-              :items="banks.banks"
+              :items="banks"
               :item-text="'name'"
               :item-value="'name'"
               label="Select Bank"

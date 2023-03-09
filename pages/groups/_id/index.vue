@@ -20,7 +20,7 @@
       <v-spacer />
 
       <v-dialog
-        v-if="tab === 1"
+        v-if="tab === 2"
         v-model="bankdialog"
         persistent
         max-width="600px"
