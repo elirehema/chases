@@ -48,41 +48,16 @@
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <!--<v-list dense>
-        <v-list-group
-          v-for="item in menuitems"
-          :key="item.title"
-          v-model="item.active"
-          :prepend-icon="`mdi-${item.icon}`"
-          active-class="white--text"
-          append-icon="mdi-menu-down"
-          no-action
-        >
-          <template #activator>
-            <v-list-item-content>
-              <v-list-item-title class="font-weight-bold">
-                {{ item.title }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </template>
-
-          <v-list-item
-            v-for="child in item.menus"
-            :key="child.title"
-            color="primary"
-            class="pl-4"
-          >
-            <v-list-item-icon>
-              <v-icon>{{ 'mdi-'+ child.icon }}</v-icon>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>
-                <span class="font-weight-light">{{ child.title }}</span>
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-group>
-      </v-list>-->
+      <template #append>
+        <div class="pa-2">
+          <v-btn block rounded color="warning" @click="$store.dispatch('_logoutsession')">
+            <v-icon left>
+              mdi-logout-variant
+            </v-icon>
+            Logout
+          </v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -99,51 +74,12 @@
       >
         <v-icon>mdi-{{ `menu${miniVariant ? '' : '-open'}` }}</v-icon>
       </v-btn>
-      <!--<v-btn
-        icon
-        dark
-      >
-        <v-icon>mdi-selection</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        dark
-        @click="$store.dispatch('_logoutsession')"
-      >
-        <v-icon>mdi-home</v-icon>
-      </v-btn>-->
-      <v-spacer />
-      <v-btn
-        fab
-        small
-        color="red"
-        @click="$store.dispatch('_logoutsession')"
-      >
-        <v-icon>mdi-power</v-icon>
-      </v-btn>
     </v-app-bar>
     <v-main>
       <v-container class="ma-2" height="100%" fluid>
         <nuxt />
       </v-container>
     </v-main>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
     <v-footer
       :absolute="!fixed"
       app
