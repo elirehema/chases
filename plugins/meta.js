@@ -1,8 +1,8 @@
 const type = 'website'
-const url = 'https://www.ngazi.co.tz/'
-const title = 'Ngazi Technologies'
-const description = 'Organization Transaction Management System Administrator Dashboard'
-const mainImage = 'https://arctype.com/blog/content/images/2021/10/mysql-transactions.jpg'
+const url = 'https://chasescroll.com'
+const title = 'ChaseScroll'
+const description = 'Your well-tailored virtual community'
+const mainImage = 'https://chasescroll.com/Resources/Images/Group33689.png'
 
 export default (meta) => {
   return [

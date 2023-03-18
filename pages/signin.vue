@@ -19,10 +19,10 @@
               <v-list-item three-line>
                 <v-list-item-content>
                   <v-list-item-title class="text-sm-h4 text-md-h3 text-lg-h2 primary--text text-sm-center text-md-left">
-                    Ngazi Technologies
+                    ChaseScroll
                   </v-list-item-title>
                   <v-list-item-subtitle class="mt-10 text-sm-h5 text-md-h4 text-lg-h4 black--text text-sm-center text-md-left">
-                    Lorem Ipsum dolor sit de amet cons
+                    Your well-tailored virtual community
                   </v-list-item-subtitle>
                 </v-list-item-content>
               </v-list-item>
@@ -30,7 +30,7 @@
           </v-col>
           <v-spacer />
           <v-col cols="12" md="5" lg="4" class="mt-5 d-flex justify-center">
-            <v-card class="py-12">
+            <v-card class="py-12" color="#ebf0f7">
               <v-card-title class="d-flex justify-center">
                 <img
                   src="@/assets/images/logo.png"
@@ -43,7 +43,7 @@
                 <v-row no-gutters class="mt-5">
                   <v-col cols="12" class=" mt-3">
                     <v-text-field
-                      v-model="form.userId"
+                      v-model="form.username"
                       color="black"
                       class="text-h4 px-3 form-input"
                       outlined
@@ -91,8 +91,8 @@ export default {
   data () {
     return {
       form: {
-        userId: null,
-        password: null
+        username: "testman",
+        password: "Test12345"
       },
 
       title: 'Market Grid : Login'

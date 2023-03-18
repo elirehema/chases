@@ -1,12 +1,12 @@
 // src/plugins/vuetify.js
 
-import Vue from "vue";
-import Vuetify from "vuetify/lib";
+import Vue from 'vue'
+import Vuetify from 'vuetify/lib'
 // import colors from "vuetify/lib/util/colors";
-Vue.use(Vuetify);
+Vue.use(Vuetify)
 export default (ctx) => {
   const vuetify = new Vuetify({
-    customVariables: ["~/assets/variables.scss"],
+    customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
       themes: {
@@ -18,9 +18,9 @@ export default (ctx) => {
           info: '#2196F3',
           warning: '#FB8C00',
           error: '#9D0000',
-          default: "#354141",
-          milky: "#01242F",
-          deposit: "#14c416",
+          default: '#354141',
+          milky: '#01242F',
+          deposit: '#14c416'
 
         },
         light: {
@@ -31,17 +31,17 @@ export default (ctx) => {
           info: '#2196F3',
           warning: '#FB8C00',
           error: '#FF0000',
-          default: "#FFFFFF",
-          milky: "#FDFFF5",
-          teal: "#51883a",
-          whitish: "F5F5F5",
-          deposit: "#14c416",
-          button: "#02532b"
+          default: '#FFFFFF',
+          milky: '#FDFFF5',
+          teal: '#51883a',
+          whitish: 'F5F5F5',
+          deposit: '#14c416',
+          button: '#162396'
         }
 
-      },
-    },
-  });
-  ctx.app.vuetify = vuetify;
-  ctx.$vuetify = vuetify.framework;
-};
+      }
+    }
+  })
+  ctx.app.vuetify = vuetify
+  ctx.$vuetify = vuetify.framework
+}

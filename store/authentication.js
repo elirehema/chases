@@ -8,10 +8,8 @@ const state = () => ({
 })
 
 const mutations = {
-  'AUTHENTICATE' (state, password) {
+  'AUTHENTICATE' (state) {
     state.showLoader = true
-    state.password = password
-    localStorage.setItem('password', password)
   },
   'AUTHENTICATE_FAILED' (state) {
     state.showLoader = false
@@ -62,9 +60,9 @@ const mutations = {
 }
 const actions = {
   async _authenticate ({ commit }, requestbody) {
-    commit('AUTHENTICATE',requestbody.password)
+    commit('AUTHENTICATE')
     await this.$api
-      .$post('/auth', requestbody)
+      .$post('/auth-api/signin', requestbody)
       .then((response) => {
         commit('AUTHENTICATE_SUCCESS', response)
       })

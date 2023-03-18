@@ -10,18 +10,18 @@ export default {
   target: 'static',
   router: {
     mode: 'hash',
-    base: '/subway/',
+    base: isDev ? '/' : '/subway/',
     routerNameSplitter: '/',
     middleware: ['router']
   },
   env: {
-    baseUrl: isDev ? 'https://eppg.ngazi.co.tz/paymentGW/portal' : 'https://eppg.ngazi.co.tz/paymentGW/portal'
+    baseUrl: 'http://ec2-3-134-231-37.us-east-2.compute.amazonaws.com:8080'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'NgaziTech: %s',
-    title: 'NgaziTech',
+    titleTemplate: 'ChaseScroll',
+    title: 'ChaseScroll',
     htmlAttrs: {
       lang: 'en'
     },
@@ -33,7 +33,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: process.env.DEPLOY_ENV === 'prod' ? '/subway/favicon.ico' : '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: isDev ? '/favicon.ico' : '/subway/favicon.ico' }
     ]
   },
 
@@ -85,7 +85,7 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    publicPath: process.env.NODE_ENV === 'prod' ? '/subway/' : '/subway/',
+    // publicPath: process.env.NODE_ENV === 'prod' ? '/subway/' : '/subway/',
     extend (config, ctx) { },
     postcss: {
       preset: {
