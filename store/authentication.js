@@ -19,18 +19,10 @@ const mutations = {
   },
   'AUTHENTICATE_SUCCESS' (state, payload) {
     state.showLoader = false
-    if (payload.responseCode === 0) {
-      state.msisdn = payload.msisdn
+    if (payload.access_token) {
       state.account = payload
-      localStorage.setItem('msisdn', payload.msisdn)
-      if (payload.status === 'INACTIVE') {
-        this.$router.push('/password')
-      } else {
-        state.authenticated = true
-        this.$router.push('/')
-      }
-    } else {
-      // window.location.reload(true)
+      state.authenticated = true
+      this.$router.push('/')
     }
   },
   'LOGOUT_SESSION' (state) {

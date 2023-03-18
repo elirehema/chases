@@ -6,7 +6,7 @@
           <img
             src="@/assets/images/logo.png"
             alt="homepage"
-            width="160"
+            width="100"
             class="ml-2 dark-logo"
           >
         </v-col>
@@ -14,7 +14,7 @@
 
       <div class="d-flex align-center justify-center mt-15">
         <v-row class="mt-0" no-gutters>
-          <v-col cols="12" md="5" class="  d-flex justify-center align-center ">
+          <v-col v-if="!$vuetify.breakpoint.mobile" cols="12" md="5" class="  d-flex justify-center align-center ">
             <v-list color="transparent">
               <v-list-item three-line>
                 <v-list-item-content>
@@ -91,8 +91,8 @@ export default {
   data () {
     return {
       form: {
-        username: "testman",
-        password: "Test12345"
+        username: 'testman',
+        password: 'Test12345'
       },
 
       title: 'Market Grid : Login'
