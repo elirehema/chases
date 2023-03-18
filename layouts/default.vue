@@ -24,9 +24,9 @@
           </v-list-item-avatar>
           <v-list-item-content>
             <v-list-item-title class="text-h6">
-              NgaziTech Platform
+              ChaseScroll 
             </v-list-item-title>
-            <v-list-item-subtitle>Transactions management</v-list-item-subtitle>
+            <v-list-item-subtitle>Login Sample Page</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -108,17 +108,17 @@ export default {
         {
           title: 'Home',
           icon: 'home-outline',
-          to: '/'
+        
         },
         {
-          title: 'Organizations',
+          title: 'Help',
           icon: 'account-group-outline',
-          to: '/groups'
+         
         },
         {
-          title: 'Banks',
+          title: 'Contacts',
           icon: 'bank-outline',
-          to: '/banks'
+          
         }
       ],
       miniVariant: false,

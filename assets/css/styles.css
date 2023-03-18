@@ -83,7 +83,7 @@ p.primary--text.text-h6 {
 }
 
 main {
-  background-color: #ebf0f7;
+  background-color: #f4f4f4;
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -110,7 +110,7 @@ main.v-main.login {
   }
 }
 .v-application--wrap {
-  background: #ebf0f7;
+  background: transparent;
   height: 70%;
   background-repeat: no-repeat;
   background-size: cover;
