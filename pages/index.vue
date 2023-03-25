@@ -1,6 +1,10 @@
 <template>
   <v-row justify="start">
     <v-col cols="12" sm="12" md="3">
+      <v-col cols="12" v-if="account">
+      Username: {{ account.user_name }} <br/>
+      Created: {{ account.created_at }}
+    </v-col>
       <v-card min-height="400" flat outlined class="logo py-4 d-flex justify-center align-center">
         <NuxtLogo />
       </v-card>
@@ -39,6 +43,7 @@ const gradients = [
   ['#00c6ff', '#F0F', '#FF0'],
   ['#f72047', '#ffd200', '#1feaea']
 ]
+import { mapGetters } from 'vuex'
 export default {
   name: 'IndexPage',
   data () {
@@ -60,6 +65,11 @@ export default {
     return {
       title: 'Home'
     }
-  }
+  },
+  computed: {
+    ...mapGetters({
+      account: 'account'
+    })
+  },
 }
 </script>
