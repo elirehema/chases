@@ -15,7 +15,7 @@ export default {
     middleware: ['router']
   },
   env: {
-    baseUrl: 'http://ec2-3-134-231-37.us-east-2.compute.amazonaws.com:8080'
+    baseUrl: 'http://ec2-3-134-231-37.us-east-2.compute.amazonaws.com:8081'
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
