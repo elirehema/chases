@@ -80,12 +80,12 @@ const actions = {
   }
 }
 const getters = {
-  msisdn: function (state) {
-    return state.msisdn
+   account: function (state) {
+    return state.account
   },
   password: function (state) { return state.password },
   isAuthenticated: function (state) {
-    return state.password !== null
+    return state.account !== null
   }
 
 }
